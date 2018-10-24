@@ -1,0 +1,53 @@
+package Manager;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class JobCreateController {
+	public ComboBox<Ad> adSelector;
+	public ComboBox<Crew> crewSelector;
+	public ComboBox<Material> materialSelector;
+	public TextField quote;
+	public TextField footage;
+	public TextField street;
+	public TextField city;
+	public TextField state;
+	public TextField zipCode;
+	public DatePicker date;
+	
+	Stage jobStage = new Stage();
+	
+	
+	public JobCreateController() {
+		
+	}
+	
+	
+	public void newJob() {
+		try {
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("JobCreate.fxml"));
+			Scene scene = new Scene(root,600,300);
+			jobStage.setTitle("Create Job");
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			jobStage.setScene(scene);
+			jobStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void enter() {
+		
+	}
+	
+	public void cancel() {
+		jobStage.close();
+	}
+
+}

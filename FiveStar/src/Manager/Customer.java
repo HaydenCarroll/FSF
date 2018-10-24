@@ -4,14 +4,15 @@ package Manager;
 //use the data class to find the customer id (Data.getNextCustomerId()) 
 //getters and setters
 public class Customer {
+	int id;
 	int adID;
 	String name;
 	Address address;
 	int numOfJobs;
 	String billingAddress;
 	String email;
-	public Customer(int id,int adId,String name,Address address,int numOfJobs,String billingAddress,String email) {
-		id=Data.getNextCustomerId();
+	public Customer(int adId,String name,Address address,int numOfJobs,String billingAddress,String email) {
+		this.id=Data.getNextCustomerID();
 		this.adID=adId;
 		this.name=name;
 		this.address=address;
@@ -22,9 +23,10 @@ public class Customer {
 	public int getAdID() {
 		return adID;
 	}
-	public void setAdID(int adID) {
+	//this might not be needed
+	/*public void setAdID(int adID) {
 		this.adID = adID;
-	}
+	}*/
 	public String getName() {
 		return name;
 	}

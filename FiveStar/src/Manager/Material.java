@@ -1,9 +1,12 @@
+package Manager;
+
 //(Andres R) This class should contain a name, price per foot(what the customer is charged), cost per unit,
 //total amount spent on the material, total footage of material sold, total amount sold of material(money amnt),
 //make a method to update total spent, total footage,
 //total amount of material(ex. updateSold(number) so that sold=sold+number)
 //getters and setters
 public class Material {
+	private int materialID;
 	private String name;
 	private double pricePF;
 	private double costPU;
@@ -12,6 +15,7 @@ public class Material {
 	private double totalAmtSold;
 	
 	public Material(){
+		this.materialID=Data.getNextMaterialID();
 		this.name = "<Default name>";
 		this.pricePF = 0;
 		this.costPU = 0;
@@ -21,6 +25,7 @@ public class Material {
 	}
 	
 	public Material(String name, double PricePF, double costPU){
+		this.materialID=Data.getNextMaterialID();
 		this.name = name;
 		this.pricePF = PricePF;
 		this.costPU = costPU;
@@ -29,6 +34,7 @@ public class Material {
 		this.totalAmtSold = 0;
 	}
 	public Material(String name, double PricePF, double costPU, double totalAmt, double totalFootage, double totalAmtSold){
+		this.materialID=Data.getNextMaterialID();
 		this.name = name;
 		this.pricePF = PricePF;
 		this.costPU = costPU;
@@ -101,6 +107,14 @@ public class Material {
 
 	public void setTotalAmtSold(double totalAmtSold) {
 		this.totalAmtSold = totalAmtSold;
+	}
+
+	public int getMaterialID() {
+		return materialID;
+	}
+
+	public void assignMaterialID(int materialID) {
+		this.materialID=Data.getNextMaterialID();;
 	}
 	
 	

@@ -4,12 +4,14 @@ package Manager;
 //street, city, state, zip code
 //getters and setters
 public class Address {
+	private int addressID;
 	private String street;
 	private String city;
 	private String state;
 	private int zipcode;
 	
 	public Address(String street,String city, String state,int zipcode) {
+		this.addressID=Data.getNextAddressID();
 		this.street=street;
 		this.city=city;
 		this.state=state;
