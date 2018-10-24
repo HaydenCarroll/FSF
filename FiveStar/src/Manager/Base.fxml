@@ -33,7 +33,7 @@
             </MenuBar>
          </top>
          <center>
-            <TableView prefHeight="775.0" prefWidth="649.0" BorderPane.alignment="CENTER">
+            <TableView onMouseClicked="#initalize" onSort="#initalize" prefHeight="775.0" prefWidth="649.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="75.0" text="Sale #" />
                 <TableColumn prefWidth="75.0" text="Date" />
@@ -67,7 +67,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
                      <image>
-                        <Image url="@../../logo.png" />
+                        <Image url="@logo.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #073ABE;" text="Graphs" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">

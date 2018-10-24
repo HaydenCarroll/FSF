@@ -17,10 +17,24 @@ public class Job {
 	private double footage;
 	private Address address;
 	private LocalDate date;
-	private int laborCost;
+	private double laborCost;
 	private boolean completed;
+	private LocalDate dateCompleted;
+	private String sDate;
 	
-	
+	public Job(Ad ad, Crew crew, Material material, double quote, double footage, Address address, double laborCost, LocalDate date) {
+		this.jobID=Data.getNextJobID();
+		this.ad=ad;
+		this.crew=crew;
+		this.material=material;
+		this.quote=quote;
+		this.footage=footage;
+		this.address=address;
+		this.laborCost=laborCost;
+		this.date=date;
+		this.setsDate(date.toString());
+		
+	}
 	public void assignJobID() {
 		this.jobID=Data.getNextJobID();
 	}
@@ -88,7 +102,7 @@ public class Job {
 		this.date = date;
 	}
 
-	public int getLaborCost() {
+	public double getLaborCost() {
 		return laborCost;
 	}
 
@@ -102,6 +116,18 @@ public class Job {
 
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
+	}
+	public LocalDate getDateCompleted() {
+		return dateCompleted;
+	}
+	public void setDateCompleted(LocalDate dateCompleted) {
+		this.dateCompleted = dateCompleted;
+	}
+	public String getsDate() {
+		return sDate;
+	}
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
 	}
 	
 	

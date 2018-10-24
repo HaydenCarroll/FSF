@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.JobCreateController">
    <center>
       <BorderPane prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <bottom>
             <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="560.0" spacing="30.0" translateX="-20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Cancel" />
-                  <Button mnemonicParsing="false" text="Enter" />
+                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#enter" text="Enter" />
                </children>
             </HBox>
          </bottom>

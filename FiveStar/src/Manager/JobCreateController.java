@@ -20,6 +20,7 @@ public class JobCreateController {
 	public TextField state;
 	public TextField zipCode;
 	public DatePicker date;
+	public TextField laborCost;
 	
 	Stage jobStage = new Stage();
 	
@@ -43,7 +44,12 @@ public class JobCreateController {
 	}
 	
 	public void enter() {
-		
+		Address address = new Address(street.getText(),city.getText(),state.getText(),Integer.parseInt(zipCode.getText()));
+		Ad ad = adSelector.getValue();
+		Crew crew = crewSelector.getValue();
+		Material material = materialSelector.getValue();
+		Job job = new Job(ad,crew,material,Integer.parseInt(quote.getText()),Integer.parseInt(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue());
+		Data.updateJobList(job);
 	}
 	
 	public void cancel() {

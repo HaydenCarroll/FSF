@@ -2,6 +2,9 @@ package Manager;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 //(Jimmy) Data contains the objects created by other classes.
 //they need to be in linked and array lists which you can determine base on how often the list is updated
 //this class is also responsible for reading and writing the files that will be saved on the client computer
@@ -16,7 +19,30 @@ public class Data {
 	private static ArrayList<Ad> adList;
 	private static ArrayList<Material> materialList;
 	
-
+	public static ObservableList<Job> getJobObservableList(){
+		ObservableList<Job> jobList = FXCollections.observableArrayList();
+		jobList.addAll(Data.getJobList());
+		return jobList;
+	}
+	
+	public static ObservableList<Customer> getCustomerObservableList(){
+		ObservableList<Customer> customerList = FXCollections.observableArrayList();
+		customerList.addAll(Data.getCustomerList());
+		return customerList;
+	}
+	
+	public static ObservableList<Crew> getCrewObservableList(){
+		ObservableList<Crew> crewList = FXCollections.observableArrayList();
+		crewList.addAll(Data.getCrewList());
+		return crewList;
+	}
+	
+	public static ObservableList<Material> getMaterialObservableList(){
+		ObservableList<Material> materialList = FXCollections.observableArrayList();
+		materialList.addAll(Data.getMaterialList());
+		return materialList;
+	}
+	
 	public static ArrayList<Job> getJobList() {
 		return jobList;
 	}

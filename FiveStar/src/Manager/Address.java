@@ -11,11 +11,15 @@ public class Address {
 	private int zipcode;
 	
 	public Address(String street,String city, String state,int zipcode) {
-		this.addressID=Data.getNextAddressID();
+		this.setAddressID(Data.getNextAddressID());
 		this.street=street;
 		this.city=city;
 		this.state=state;
 		this.zipcode=zipcode;
+	}
+	
+	public String toString() {
+		return (""+this.street+", "+this.city+", "+this.state+", "+this.zipcode);
 	}
 
 	public String getStreet() {
@@ -48,5 +52,13 @@ public class Address {
 
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
+	}
+
+	public int getAddressID() {
+		return addressID;
+	}
+
+	public void setAddressID(int addressID) {
+		this.addressID = addressID;
 	}
 }

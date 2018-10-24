@@ -51,7 +51,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../logo.png" />
+                                          <Image url="@logo.png" />
                                        </image>
                                     </ImageView>
                                     <Button mnemonicParsing="false" onAction="#newJob" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #073ABE;" text="Create New" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -125,7 +125,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../logo.png" />
+                                          <Image url="@logo.png" />
                                        </image>
                                     </ImageView>
                                     <Button mnemonicParsing="false" onAction="#openCreateCustomers" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #073ABE;" text="Create New" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -166,7 +166,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../logo.png" />
+                                          <Image url="@logo.png" />
                                        </image>
                                     </ImageView>
                                     <Button mnemonicParsing="false" onAction="#openCreateCrews" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #073ABE;" text="Create New" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -219,7 +219,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../logo.png" />
+                                          <Image url="@logo.png" />
                                        </image>
                                     </ImageView>
                                     <Button mnemonicParsing="false" onAction="#openCreateAdvertisments" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #073ABE;" text="Create New" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -274,7 +274,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../logo.png" />
+                                          <Image url="@logo.png" />
                                        </image>
                                     </ImageView>
                                     <Button mnemonicParsing="false" onAction="#openCreateMaterials" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #073ABE;" text="Create New" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
