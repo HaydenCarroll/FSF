@@ -35,19 +35,20 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox prefWidth="150.0" promptText="Advertiser/Ref" GridPane.rowIndex="1" />
-                  <ComboBox prefWidth="150.0" promptText="Crew" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox prefWidth="150.0" promptText="Material" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField promptText="Quote" GridPane.rowIndex="3" />
-                  <TextField promptText="Footage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="adSelector" prefWidth="150.0" promptText="Advertiser/Ref" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="crewSelector" prefWidth="150.0" promptText="Crew" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="materialSelector" prefWidth="150.0" promptText="Material" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="quote" promptText="Quote" GridPane.rowIndex="3" />
+                  <TextField fx:id="footage" promptText="Footage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Repair" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                  <DatePicker promptText="Date" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <TextField promptText="Street" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField promptText="City" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="Generate Quote" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                  <TextField promptText="State" GridPane.rowIndex="4" />
-                  <TextField promptText="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField promptText="Labor Cost" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="date" promptText="Date" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <TextField fx:id="street" promptText="Street" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="city" promptText="City" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <TextField fx:id="state" promptText="State" GridPane.rowIndex="4" />
+                  <TextField fx:id="zipCode" promptText="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="laborCost" promptText="Labor Cost" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="customerSelector" prefWidth="150.0" promptText="Customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="jobName" promptText="Job Name" GridPane.rowIndex="5" />
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />

@@ -1,9 +1,15 @@
 package Manager;
 
+import java.io.Serializable;
+
 //(Joey) This class should have a customer id, Ad id, name, address object, number of jobs, billing address, and email.
 //use the data class to find the customer id (Data.getNextCustomerId()) 
 //getters and setters
-public class Customer {
+public class Customer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int id;
 	int adID;
 	String name;
@@ -11,6 +17,7 @@ public class Customer {
 	int numOfJobs;
 	String billingAddress;
 	String email;
+	String sAddress;
 	public Customer(int adId,String name,Address address,int numOfJobs,String billingAddress,String email) {
 		this.id=Data.getNextCustomerID();
 		this.adID=adId;
@@ -19,6 +26,7 @@ public class Customer {
 		this.numOfJobs=numOfJobs;
 		this.billingAddress=billingAddress;
 		this.email=email;
+		this.sAddress=address.toString();
 	}
 	public int getAdID() {
 		return adID;

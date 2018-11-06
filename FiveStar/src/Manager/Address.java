@@ -1,9 +1,15 @@
 package Manager;
 
+import java.io.Serializable;
+
 //(Joey) this class contains the information for an address
 //street, city, state, zip code
 //getters and setters
-public class Address {
+public class Address implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int addressID;
 	private String street;
 	private String city;

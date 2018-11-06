@@ -1,5 +1,7 @@
 package Manager;
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +15,7 @@ public class JobCreateController {
 	public ComboBox<Ad> adSelector;
 	public ComboBox<Crew> crewSelector;
 	public ComboBox<Material> materialSelector;
+	public ComboBox<Customer> customerSelector;
 	public TextField quote;
 	public TextField footage;
 	public TextField street;
@@ -21,6 +24,7 @@ public class JobCreateController {
 	public TextField zipCode;
 	public DatePicker date;
 	public TextField laborCost;
+	public TextField jobName;
 	
 	Stage jobStage = new Stage();
 	
@@ -48,8 +52,15 @@ public class JobCreateController {
 		Ad ad = adSelector.getValue();
 		Crew crew = crewSelector.getValue();
 		Material material = materialSelector.getValue();
-		Job job = new Job(ad,crew,material,Integer.parseInt(quote.getText()),Integer.parseInt(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue());
+		Customer cust = customerSelector.getValue();
+		Job job = new Job(ad,crew,material,Integer.parseInt(quote.getText()),Integer.parseInt(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText());
 		Data.updateJobList(job);
+		try {
+			Data.updateDataFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void cancel() {

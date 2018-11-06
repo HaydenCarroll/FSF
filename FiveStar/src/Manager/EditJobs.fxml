@@ -44,10 +44,11 @@
                   <DatePicker promptText="Date" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <TextField promptText="Street" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <TextField promptText="City" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="Generate Quote" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
                   <TextField promptText="State" GridPane.rowIndex="4" />
                   <TextField promptText="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField promptText="Labor Cost" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField promptText="Job Name" GridPane.rowIndex="5" />
+                  <ComboBox prefWidth="150.0" promptText="Customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />
