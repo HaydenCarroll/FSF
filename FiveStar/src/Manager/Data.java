@@ -1,6 +1,7 @@
 package Manager;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -16,13 +17,14 @@ public class Data implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	private static ArrayList<Job> jobList;
 	private static ArrayList<Customer> customerList;
 	private static ArrayList<Crew> crewList;
 	private static ArrayList<Address> addressList;
 	private static ArrayList<Ad> adList;
 	private static ArrayList<Material> materialList;
+	private static ArrayList<Goal> goalList;
 	
 	public Data() {
 		Data.jobList = new ArrayList<Job>();
@@ -31,6 +33,8 @@ public class Data implements Serializable{
 		Data.addressList = new ArrayList<Address>();
 		Data.adList = new ArrayList<Ad>();
 		Data.materialList = new ArrayList<Material>();
+		Data.goalList = new ArrayList<Goal>();
+		goalList.clear();
 		jobList.clear();
 		customerList.clear();
 		crewList.clear();
@@ -85,8 +89,10 @@ public class Data implements Serializable{
 			FileInputStream addressFile = new FileInputStream("address.dat");
 			FileInputStream adFile = new FileInputStream("ad.dat");
 			FileInputStream matFile = new FileInputStream("mat.dat");
+			FileInputStream goalFile = new FileInputStream("goal.dat");
 			
 			
+			ObjectInputStream inGoal = new ObjectInputStream(goalFile);
 			ObjectInputStream inJob = new ObjectInputStream(jobFile);
 			ObjectInputStream inCust = new ObjectInputStream(custFile);
 			ObjectInputStream inCrew = new ObjectInputStream(crewFile);
@@ -103,6 +109,7 @@ public class Data implements Serializable{
 			ArrayList<Address> addressList= (ArrayList<Address>) inAddress.readObject();
 			ArrayList<Ad> adList= (ArrayList<Ad>) inAd.readObject();
 			ArrayList<Material> matList= (ArrayList<Material>) inMat.readObject();
+			ArrayList<Goal> goalList = (ArrayList<Goal>) inGoal.readObject();
 			
 			
 			Data.setAddressList(addressList);
@@ -111,6 +118,7 @@ public class Data implements Serializable{
 			Data.setCustomerList(custList);
 			Data.setMaterialList(matList);
 			Data.setJobList(jobList);
+			Data.setGoalList(goalList);
 			in.close();
 			inJob.close();
 			inCust.close();
@@ -119,6 +127,7 @@ public class Data implements Serializable{
 			inAd.close();
 			inMat.close();
 			dataFile.close();
+			inGoal.close();
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -163,7 +172,10 @@ public class Data implements Serializable{
 				FileOutputStream addressFile = new FileOutputStream("address.dat");
 				FileOutputStream adFile = new FileOutputStream("ad.dat");
 				FileOutputStream matFile = new FileOutputStream("mat.dat");
+				FileOutputStream goalFile = new FileOutputStream("goal.dat");
 				Data data = new Data();
+				
+				ObjectOutputStream outGoal = new ObjectOutputStream(goalFile);
 				ObjectOutputStream out = new ObjectOutputStream(dataFile);
 				ObjectOutputStream outJob = new ObjectOutputStream(jobFile);
 				ObjectOutputStream outCust = new ObjectOutputStream(custFile);
@@ -178,6 +190,7 @@ public class Data implements Serializable{
 				outAd.writeObject(data.getAdList());
 				outMat.writeObject(data.getMaterialList());
 				out.writeObject(data);
+				outGoal.writeObject(data.getGoalList());
 				
 				outJob.close();
 				outCust.close();
@@ -187,6 +200,7 @@ public class Data implements Serializable{
 				outMat.close();
 				out.close();
 				dataFile.close();
+				outGoal.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -195,6 +209,7 @@ public class Data implements Serializable{
 	public static void updateDataFile() throws IOException{
 		try {
 			File file = new File("data.dat");
+			FileOutputStream goalFile = new FileOutputStream("goal.dat");
 			FileOutputStream dataFile = new FileOutputStream(file);
 			ObjectOutputStream out = new ObjectOutputStream(dataFile);
 			FileOutputStream jobFile = new FileOutputStream("job.dat");
@@ -203,6 +218,9 @@ public class Data implements Serializable{
 			FileOutputStream addressFile = new FileOutputStream("address.dat");
 			FileOutputStream adFile = new FileOutputStream("ad.dat");
 			FileOutputStream matFile = new FileOutputStream("mat.dat");
+			
+			
+			ObjectOutputStream outGoal = new ObjectOutputStream(goalFile);
 			ObjectOutputStream outJob = new ObjectOutputStream(jobFile);
 			ObjectOutputStream outCust = new ObjectOutputStream(custFile);
 			ObjectOutputStream outCrew = new ObjectOutputStream(crewFile);
@@ -215,13 +233,14 @@ public class Data implements Serializable{
 			outAddress.writeObject(Data.getAddressList());
 			outAd.writeObject(Data.getAdList());
 			outMat.writeObject(Data.getMaterialList());
+			outGoal.writeObject(Data.getGoalList());
 			
 			Data data = new Data(Data.getJobList(),Data.getCustomerList(),Data.getCrewList(),Data.getAddressList(),Data.getAdList(),Data.getMaterialList());
 			
 			out.writeObject(data);
 			out.close();
 			dataFile.close();
-			
+			outGoal.close();
 			outJob.close();
 			outCust.close();
 			outCrew.close();
@@ -466,6 +485,35 @@ public class Data implements Serializable{
 			}
 		}
 		return leastLabor;
+	}
+	
+	public static ArrayList<Job> getJobByDate(LocalDate start, LocalDate end){
+		
+		ArrayList<Job> jobListByDate=new ArrayList<Job>();
+		
+		for(int i=0;i<jobList.size();i++) {
+			if (jobList.get(i).getDateCompleted()!=null && jobList.get(i).getDateCompleted().isBefore(end)) {
+				jobListByDate.add(jobList.get(i));
+			}
+		}
+		return jobListByDate;
+	}
+	
+	public static double getTotalRev(ArrayList<Job> list) {
+		double num =0;
+		for(int i=0; i<list.size();i++) {
+			num+=list.get(i).getProfit();
+		}
+		return num;
+	}
+	public static ArrayList<Goal> getGoalList() {
+		return goalList;
+	}
+	public static void setGoalList(ArrayList<Goal> goalList) {
+		Data.goalList = goalList;
+	}
+	public static void updateGoalList(Goal goal) {
+		goalList.add(goal);
 	}
 
 }

@@ -1,6 +1,7 @@
 package Manager;
 
 import java.io.Serializable;
+import java.util.*;
 import java.time.LocalDate;
 
 //(Andres G) this class is equivalent to an order and should include the customer id, job id, address, 
@@ -18,7 +19,9 @@ public class Job implements Serializable{
 	private Customer customer;
 	private Ad ad;
 	private Crew crew;
-	private Material material;
+	//private Material material;
+	private ArrayList<Material> matList;
+	private ArrayList<Integer> matUnit;
 	private double quote;
 	private double footage;
 	private Address address;
@@ -33,12 +36,14 @@ public class Job implements Serializable{
 	private String fenceName;
 	private String sAd;
 	private String sCrew;
+	private double totalMatCost;
 	
-	public Job(Ad ad, Crew crew, Material material, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName) {
+	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName, String fenceName) {
 		this.jobID=Data.getNextJobID();
 		this.ad=ad;
+		this.setMatUnit(matUnit);
 		this.crew=crew;
-		this.material=material;
+		this.setMatList(matList);
 		this.quote=quote;
 		this.footage=footage;
 		this.address=address;
@@ -49,9 +54,19 @@ public class Job implements Serializable{
 		this.setCusName(customer.getName());
 		this.setsDate(date.toString());
 		this.setCityName(address.getCity());
-		this.setFenceName(material.getName());
+		this.setFenceName(fenceName);
 		this.setsAd(ad.getName());
 		this.setsCrew(crew.getName());
+		this.totalMatCost=getTotalMatCost();
+		this.dateCompleted=null;
+	}
+	
+	public double getTotalMatCost() {
+		double tot=0;
+		for (int i=0;i<this.matList.size();i++) {
+			tot+=this.matList.get(i).getCostPU()*this.matUnit.get(i);
+		}
+		return tot;
 	}
 	public void assignJobID() {
 		this.jobID=Data.getNextJobID();
@@ -85,12 +100,12 @@ public class Job implements Serializable{
 		this.crew = crew;
 	}
 	
-	public Material getMaterial() {
+	/*public Material getMaterial() {
 		return material;
 	}
 	public void setMaterial(Material material) {
 		this.material = material;
-	}
+	}*/
 	
 	public double getQuote() {
 		return quote;
@@ -188,6 +203,18 @@ public class Job implements Serializable{
 	}
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
+	}
+	public ArrayList<Material> getMatList() {
+		return matList;
+	}
+	public void setMatList(ArrayList<Material> matList) {
+		this.matList = matList;
+	}
+	public ArrayList<Integer> getMatUnit() {
+		return matUnit;
+	}
+	public void setMatUnit(ArrayList<Integer> matUnit) {
+		this.matUnit = matUnit;
 	}
 	
 	

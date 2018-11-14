@@ -14,7 +14,7 @@ public class Material implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int materialID;
 	private String name;
-	private double pricePF;
+	//private double pricePF;
 	private double costPU;
 	private double totalAmtSpent;
 	private double totalFootage;
@@ -23,37 +23,37 @@ public class Material implements Serializable{
 	public Material(){
 		this.materialID=Data.getNextMaterialID();
 		this.name = "<Default name>";
-		this.pricePF = 0;
+		//this.pricePF = 0;
 		this.costPU = 0;
 		this.totalAmtSpent = 0;
 		this.totalFootage = 0;
 		this.totalAmtSold = 0;
 	}
 	
-	public Material(String name, double PricePF, double costPU){
+	public Material(String name, double costPU){
 		this.materialID=Data.getNextMaterialID();
 		this.name = name;
-		this.pricePF = PricePF;
+		//this.pricePF = PricePF;
 		this.costPU = costPU;
 		this.totalAmtSpent = 0;
 		this.totalFootage = 0;
 		this.totalAmtSold = 0;
 	}
-	public Material(String name, double PricePF, double costPU, double totalAmt, double totalFootage, double totalAmtSold){
+	public Material(String name, double costPU, double totalAmt, double totalFootage, double totalAmtSold){
 		this.materialID=Data.getNextMaterialID();
 		this.name = name;
-		this.pricePF = PricePF;
+		//this.pricePF = PricePF;
 		this.costPU = costPU;
 		this.totalAmtSpent = totalAmt;
 		this.totalFootage = totalFootage;
 		this.totalAmtSold = totalAmtSold;
 	}
 	
-	public double totalMatSold(){
+	/*public double totalMatSold(){
 		double totalPrice;
-		totalPrice = this.pricePF*this.totalFootage;
+		//totalPrice = this.pricePF*this.totalFootage;
 		return totalPrice;
-	}
+	}*/
 	
 	public void updateTotalAmtSpent(double update){
 		this.totalAmtSpent+=update;
@@ -75,13 +75,13 @@ public class Material implements Serializable{
 		this.name = name;
 	}
 
-	public double getPricePF() {
+	/*public double getPricePF() {
 		return pricePF;
 	}
 
 	public void setPricePF(double pricePF) {
 		this.pricePF = pricePF;
-	}
+	}*/
 
 	public double getCostPU() {
 		return costPU;

@@ -1,6 +1,7 @@
 package Manager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -51,7 +52,7 @@ public class JobCreateController {
 		Address address = new Address(street.getText(),city.getText(),state.getText(),Integer.parseInt(zipCode.getText()));
 		Ad ad = adSelector.getValue();
 		Crew crew = crewSelector.getValue();
-		Material material = materialSelector.getValue();
+		ArrayList<Material> matList = materialSelector.get);
 		Customer cust = customerSelector.getValue();
 		Job job = new Job(ad,crew,material,Integer.parseInt(quote.getText()),Integer.parseInt(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText());
 		Data.updateJobList(job);

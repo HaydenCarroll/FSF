@@ -37,7 +37,7 @@ public class CreateMaterialsController {
 	}
 	
 	public void enter() {
-		Material mat = new Material(name.getText(),Double.parseDouble(price.getText()), Double.parseDouble(cost.getText()), Double.parseDouble(amtSpent.getText()), Double.parseDouble(footageUsed.getText()), Double.parseDouble(amtSold.getText()));
+		Material mat = new Material(name.getText(),Double.parseDouble(price.getText()), Double.parseDouble(cost.getText()), Double.parseDouble(amtSpent.getText()), Double.parseDouble(amtSold.getText()));
 		Data.updateMaterialList(mat);
 		System.out.println("Material Created");
 		try {
