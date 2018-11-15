@@ -15,21 +15,34 @@ public class Customer implements Serializable{
 	String name;
 	Address address;
 	int numOfJobs;
-	String billingAddress;
+	//String billingAddress;
 	String email;
 	String sAddress;
 	String phoneNum;
-	public Customer(int adId,String name,Address address,int numOfJobs,String billingAddress,String email, String phoneNum) {
+	public Customer(int adId,String name,Address address,int numOfJobs,String email, String phoneNum) {
 		this.id=Data.getNextCustomerID();
 		this.adID=adId;
 		this.name=name;
 		this.address=address;
 		this.numOfJobs=numOfJobs;
-		this.billingAddress=billingAddress;
+		//this.billingAddress=billingAddress;
 		this.email=email;
 		this.sAddress=address.toString();
 		this.phoneNum=phoneNum;
 	}
+
+	public Customer(String name,Address address,int numOfJobs,String email, String phoneNum) {
+		this.id=Data.getNextCustomerID();
+		
+		this.name=name;
+		this.address=address;
+		this.numOfJobs=numOfJobs;
+		//this.billingAddress=billingAddress;
+		this.email=email;
+		this.sAddress=address.toString();
+		this.phoneNum=phoneNum;
+	}
+
 	public int getAdID() {
 		return adID;
 	}
@@ -55,12 +68,12 @@ public class Customer implements Serializable{
 	public void setNumOfJobs(int numOfJobs) {
 		this.numOfJobs = numOfJobs;
 	}
-	public String getBillingAddress() {
+	/*public String getBillingAddress() {
 		return billingAddress;
 	}
 	public void setBillingAddress(String billingAddress) {
 		this.billingAddress = billingAddress;
-	}
+	}*/
 	public String getEmail() {
 		return email;
 	}

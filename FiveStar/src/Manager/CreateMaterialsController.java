@@ -51,7 +51,8 @@ public class CreateMaterialsController {
 	}
 	
 	public void cancel() {
-		createMaterialsStage.close();
+		Stage stage = (Stage)name.getScene().getWindow();
+		stage.close();
 	}
 
 }

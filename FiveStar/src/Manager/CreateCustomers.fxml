@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.CreateCustomersController">
    <center>
       <BorderPane prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
@@ -33,13 +32,21 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="3" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" />
+                        <TextField fx:id="numJobs" GridPane.columnIndex="3" />
                         <Label text="Name:" GridPane.halignment="RIGHT" />
                         <Label text="Number Of Jobs:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <TextField fx:id="street" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Street:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <TextField fx:id="city" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label text="City:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                      </children>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
                   </GridPane>
                   <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
@@ -53,14 +60,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="3" />
-                        <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label text="Street:" GridPane.halignment="RIGHT" />
-                        <Label text="State:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                        <Label text="City:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                        <Label text="Zip Code:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <TextField fx:id="state" GridPane.columnIndex="1" />
+                        <TextField fx:id="zip" GridPane.columnIndex="3" />
+                        <Label text="State:" GridPane.halignment="RIGHT" />
+                        <Label text="Zip Code:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Label text="Phone Number:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <TextField fx:id="phoneNum" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="2">
@@ -75,13 +80,13 @@
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Email:" />
-                              <TextField prefHeight="25.0" prefWidth="290.0" />
+                              <TextField fx:id="email" prefHeight="25.0" prefWidth="290.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Cancel" />
-                              <Button mnemonicParsing="false" text="Enter" />
+                              <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                              <Button mnemonicParsing="false" onAction="#enter" text="Enter" />
                            </children>
                         </HBox>
                      </children>
