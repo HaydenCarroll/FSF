@@ -1,11 +1,14 @@
 package Manager;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 //(Jimmy) Data contains the objects created by other classes.
 //they need to be in linked and array lists which you can determine base on how often the list is updated
@@ -25,6 +28,7 @@ public class Data implements Serializable{
 	private static ArrayList<Ad> adList;
 	private static ArrayList<Material> materialList;
 	private static ArrayList<Goal> goalList;
+	private static Object temp;
 	
 	public Data() {
 		Data.jobList = new ArrayList<Job>();
@@ -515,5 +519,37 @@ public class Data implements Serializable{
 	public static void updateGoalList(Goal goal) {
 		goalList.add(goal);
 	}
+	
+	public static ObservableList<String> getMaterialStringList(){
+		ArrayList<String> list = new ArrayList<String>();
+		for (int i=0;i<Data.getMaterialList().size();i++) {
+			System.out.println(Data.getMaterialList().get(i).getName());
+			list.add(Data.getMaterialList().get(i).getName());
+		}
+		ObservableList<String> sList = FXCollections.observableArrayList();
+		sList.addAll(list);
+		return sList;
+	}
+	public static Material findMaterial(String s) {
+		Material mat = null;
+		for (int i=0;i<Data.getMaterialList().size();i++) {
+			Material m = Data.getMaterialList().get(i);
+			if(m.getName().equals(s)) {
+				System.out.println("Found "+m.getName());
+				mat=m;
+			}
+		}
+		return mat;
+	}
+	public static Object getTemp() {
+		return temp;
+	}
+	public static void setTemp(Object temp) {
+		Data.temp = temp;
+	}
+	public static void clear() {
+		Data.temp=null;
+	}
+	
 
 }

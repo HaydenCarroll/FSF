@@ -123,5 +123,10 @@ public class Material implements Serializable{
 		this.materialID=Data.getNextMaterialID();;
 	}
 	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
 	
 }

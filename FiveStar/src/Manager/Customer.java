@@ -18,7 +18,8 @@ public class Customer implements Serializable{
 	String billingAddress;
 	String email;
 	String sAddress;
-	public Customer(int adId,String name,Address address,int numOfJobs,String billingAddress,String email) {
+	String phoneNum;
+	public Customer(int adId,String name,Address address,int numOfJobs,String billingAddress,String email, String phoneNum) {
 		this.id=Data.getNextCustomerID();
 		this.adID=adId;
 		this.name=name;
@@ -27,6 +28,7 @@ public class Customer implements Serializable{
 		this.billingAddress=billingAddress;
 		this.email=email;
 		this.sAddress=address.toString();
+		this.phoneNum=phoneNum;
 	}
 	public int getAdID() {
 		return adID;

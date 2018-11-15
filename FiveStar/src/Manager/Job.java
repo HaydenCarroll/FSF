@@ -38,7 +38,7 @@ public class Job implements Serializable{
 	private String sCrew;
 	private double totalMatCost;
 	
-	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName, String fenceName) {
+	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName) {
 		this.jobID=Data.getNextJobID();
 		this.ad=ad;
 		this.setMatUnit(matUnit);
