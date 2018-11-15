@@ -298,6 +298,12 @@ public class Data implements Serializable{
 		return materialList;
 	}
 	
+	public static ObservableList<Ad> getAdObservableList(){
+		ObservableList<Ad> adList = FXCollections.observableArrayList();
+		adList.addAll(Data.getAdList());
+		return adList;
+	}
+	
 	public static ArrayList<Job> getJobList() {
 		return jobList;
 	}
@@ -429,6 +435,16 @@ public class Data implements Serializable{
 			}
 		}
 		return bestAd;
+	}
+	
+	public static double getAdValue(Ad ad) {
+		double value = 0;
+		for(int i=0; i<jobList.size();i++) {
+			if(jobList.get(i).getAd().equals(ad)) {
+				value+=jobList.get(i).getProfit();
+			}
+		}
+		return value;
 	}
 		
 	public static Ad getLeastSeenAd(ArrayList<Ad> ads) {

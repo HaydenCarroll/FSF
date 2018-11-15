@@ -29,6 +29,7 @@ public class ManageController {
 	public TableColumn<Customer, String> cuAddress;
 	public TableColumn<Customer, Integer> cuNumOfJobs;
 	public TableColumn<Customer, String> cuEmail;
+	public TableColumn<Customer, String> cuPhoneNum;
 	
 	
 	public TableView<Crew> crewTable;
@@ -37,6 +38,12 @@ public class ManageController {
 	public TableColumn<Crew, String> crJobsList;
 	
 	public TableView<Ad> adTable;
+	public TableColumn<Ad, String> adName;
+	public TableColumn<Ad, Integer> adNumUse;
+	public TableColumn<Ad, String> adLocation;
+	public TableColumn<Ad, Double> adCost;
+	public TableColumn<Ad, Double> adValue;
+	
 	public TableView<Material> matTable;
 	public TableColumn<Material, String> matName;
 	public TableColumn<Material, Double> matPrice;
@@ -109,6 +116,8 @@ public class ManageController {
 				new PropertyValueFactory<Customer, Integer>("numOfJobs"));
 		cuEmail.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("email"));
+		cuPhoneNum.setCellValueFactory(
+				new PropertyValueFactory<Customer, String>("phoneNum"));
 		custTable.setItems(custList);
 	}
 	
@@ -125,6 +134,30 @@ public class ManageController {
 	}
 	
 	//do ad tab
+	
+	public void adTab() {
+		try {
+			ObservableList<Ad> adList = Data.getAdObservableList();
+			adName.setCellValueFactory(
+					new PropertyValueFactory<Ad, String>("name"));
+
+			adNumUse.setCellValueFactory(
+					new PropertyValueFactory<Ad, Integer>("numberOfUses"));
+
+			adLocation.setCellValueFactory(
+					new PropertyValueFactory<Ad, String>("location"));
+
+			adCost.setCellValueFactory(
+					new PropertyValueFactory<Ad, Double>("adCost"));
+
+			adValue.setCellValueFactory(
+					new PropertyValueFactory<Ad, Double>("value"));
+			adTable.setItems(adList);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void materialTab() {
 		try {

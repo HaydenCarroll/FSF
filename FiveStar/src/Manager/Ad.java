@@ -15,13 +15,14 @@ public class Ad implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int adID;
-	private int adCost;
+	private double adCost;
 	private String name;
 	private int numberOfUses;
 	private String location;
 	private int amtSold;
+	private double value;
 	
-	public Ad(String name, int adCost, int numberOfUses, int amtSold){
+	public Ad(String name, double adCost, int numberOfUses, int amtSold){
 		this.adID=Data.getNextAdID();
 		this.name = name;
 		this.adCost = adCost;
@@ -29,7 +30,7 @@ public class Ad implements Serializable{
 		this.location = "Online";
 	}
 	
-	public Ad(String name, String location, int adCost, int numberOfUses, int amtSold){
+	public Ad(String name, String location, double adCost, int numberOfUses, int amtSold){
 		this.adID=Data.getNextAdID();
 		this.name = name;
 		this.adCost = adCost;
@@ -61,7 +62,7 @@ public class Ad implements Serializable{
 		this.numberOfUses=+number;
 	}
 
-	public int getAdCost() {
+	public double getAdCost() {
 		return adCost;
 	}
 
@@ -99,6 +100,17 @@ public class Ad implements Serializable{
 
 	public void setAmtSold(int amtSold) {
 		this.amtSold = amtSold;
+	}
+
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+	public void updateValue() {
+		this.value = Data.getAdValue(this);
 	}
 	
 	

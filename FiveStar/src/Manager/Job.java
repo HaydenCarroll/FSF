@@ -31,16 +31,19 @@ public class Job implements Serializable{
 	private double profit;
 	private LocalDate dateCompleted;
 	private String sDate;
+	private String sDateCompleted;
 	private String cusName;
 	private String cityName;
 	private String fenceName;
 	private String sAd;
 	private String sCrew;
 	private double totalMatCost;
+	private double amntCharged;
 	
 	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName) {
 		this.jobID=Data.getNextJobID();
 		this.ad=ad;
+		this.ad.updateAdUse();
 		this.setMatUnit(matUnit);
 		this.crew=crew;
 		this.setMatList(matList);
@@ -57,8 +60,22 @@ public class Job implements Serializable{
 		this.setFenceName(fenceName);
 		this.setsAd(ad.getName());
 		this.setsCrew(crew.getName());
-		this.totalMatCost=getTotalMatCost();
+		this.setTotalMatCost(getTotalMatCost());
 		this.dateCompleted=null;
+		this.completed=false;
+		this.laborCost=0;
+		this.profit=0;
+		this.sDateCompleted=null;
+		this.totalMatCost=0;
+		this.amntCharged=0;
+		
+	}
+	
+	public void endJob(LocalDate date, double labor, double matCost, double charged) {
+		this.dateCompleted=date;
+		this.laborCost=labor;
+		this.totalMatCost=matCost;
+		this.amntCharged=charged;
 	}
 	
 	public double getTotalMatCost() {
@@ -215,6 +232,26 @@ public class Job implements Serializable{
 	}
 	public void setMatUnit(ArrayList<Integer> matUnit) {
 		this.matUnit = matUnit;
+	}
+
+	public String getsDateCompleted() {
+		return sDateCompleted;
+	}
+
+	public void setsDateCompleted(String sDateCompleted) {
+		this.sDateCompleted = sDateCompleted;
+	}
+
+	public void setTotalMatCost(double totalMatCost) {
+		this.totalMatCost = totalMatCost;
+	}
+
+	public double getAmntCharged() {
+		return amntCharged;
+	}
+
+	public void setAmntCharged(double amntCharged) {
+		this.amntCharged = amntCharged;
 	}
 	
 	
