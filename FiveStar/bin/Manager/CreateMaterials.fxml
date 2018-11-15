@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.CreateMaterialsController">
    <center>
       <BorderPane prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
@@ -34,8 +34,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="3" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" />
+                        <TextField fx:id="price" GridPane.columnIndex="3" />
                         <Label text="Name:" GridPane.halignment="RIGHT" />
                         <Label text="Price Per Foot(Sell Price):" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                      </children>
@@ -52,10 +52,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField text="0" GridPane.columnIndex="3" />
-                        <TextField text="0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="cost" GridPane.columnIndex="1" />
+                        <TextField fx:id="footageUsed" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="amtSpent" text="0" GridPane.columnIndex="3" />
+                        <TextField fx:id="amtSold" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <Label text="Cost Per Unit:" GridPane.halignment="RIGHT" />
                         <Label text="Total Footage Used:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <Label text="Total Amount Spent:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
@@ -73,8 +73,8 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Cancel" />
-                              <Button mnemonicParsing="false" text="Enter" />
+                              <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                              <Button mnemonicParsing="false" onAction="#enter" text="Enter" />
                            </children>
                         </HBox>
                      </children>

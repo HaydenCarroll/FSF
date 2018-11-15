@@ -34,7 +34,7 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab closable="false" text="Jobs">
+                <Tab closable="false" onSelectionChanged="#jobsTab" text="Jobs">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <left>
@@ -73,19 +73,19 @@
                               </GridPane>
                            </left>
                            <center>
-                              <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="jobsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                    <TableColumn editable="false" prefWidth="75.0" text="Sale #" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Date" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Name" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="City" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Fence Style" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Feet" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Quote" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Reference" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Crew" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Sold" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Profit" />
+                                    <TableColumn fx:id="saleNo" editable="false" prefWidth="75.0" text="Sale #" />
+                                    <TableColumn fx:id="date" editable="false" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="name" editable="false" prefWidth="75.0" text="Name" />
+                                    <TableColumn fx:id="city" editable="false" prefWidth="75.0" text="City" />
+                                    <TableColumn fx:id="fenceStyle" editable="false" prefWidth="75.0" text="Fence Style" />
+                                    <TableColumn fx:id="feet" editable="false" prefWidth="75.0" text="Feet" />
+                                    <TableColumn fx:id="quote" editable="false" prefWidth="75.0" text="Quote" />
+                                    <TableColumn fx:id="reference" editable="false" prefWidth="75.0" text="Reference" />
+                                    <TableColumn fx:id="crew" editable="false" prefWidth="75.0" text="Crew" />
+                                    <TableColumn fx:id="sold" editable="false" prefWidth="75.0" text="Sold" />
+                                    <TableColumn fx:id="profit" editable="false" prefWidth="75.0" text="Profit" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -95,16 +95,16 @@
                         </BorderPane>
                      </content>
                 </Tab>
-                <Tab closable="false" text="Customers">
+                <Tab closable="false" onSelectionChanged="#customersTab" text="Customers">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="custTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn editable="false" prefWidth="75.0" text="Name" />
-                                  <TableColumn editable="false" prefWidth="75.0" text="Address" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Number Of Jobs" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Email" />
+                                  <TableColumn fx:id="cuName" editable="false" prefWidth="75.0" text="Name" />
+                                  <TableColumn fx:id="cuAddress" editable="false" prefWidth="75.0" text="Address" />
+                                    <TableColumn fx:id="crNumOfJobs" editable="false" prefWidth="75.0" text="Number Of Jobs" />
+                                    <TableColumn fx:id="cuEmail" editable="false" prefWidth="75.0" text="Email" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -149,7 +149,7 @@
                         </BorderPane>
                      </content>
                 </Tab>
-                  <Tab closable="false" text="Crews">
+                  <Tab closable="false" onSelectionChanged="#crewsTab" text="Crews">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <left>
@@ -188,11 +188,11 @@
                               </GridPane>
                            </left>
                            <center>
-                              <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="crewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn editable="false" prefWidth="75.0" text="Name" />
-                                  <TableColumn editable="false" prefWidth="75.0" text="Number of Jobs" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Job List" />
+                                  <TableColumn fx:id="crName" editable="false" prefWidth="75.0" text="Name" />
+                                  <TableColumn fx:id="cuNumOfJobs" editable="false" prefWidth="75.0" text="Number of Jobs" />
+                                    <TableColumn fx:id="crJobsList" editable="false" prefWidth="75.0" text="Job List" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -257,7 +257,7 @@
                         </BorderPane>
                      </content>
                   </Tab>
-                  <Tab closable="false" text="Materials">
+                  <Tab closable="false" onSelectionChanged="#materialTab" text="Materials">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <left>
@@ -296,14 +296,14 @@
                               </GridPane>
                            </left>
                            <center>
-                              <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="matTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn editable="false" prefWidth="75.0" text="Name" />
-                                  <TableColumn editable="false" prefWidth="75.0" text="Price Per Foot (Sell Price)" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Cost Per Unit" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Total Amount Spent" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Total Footage Used" />
-                                    <TableColumn editable="false" prefWidth="75.0" text="Total Amount Sold" />
+                                  <TableColumn fx:id="matName" editable="false" prefWidth="75.0" text="Name" />
+                                  <TableColumn fx:id="matPrice" editable="false" prefWidth="75.0" text="Price Per Foot (Sell Price)" />
+                                    <TableColumn fx:id="matCost" editable="false" prefWidth="75.0" text="Cost Per Unit" />
+                                    <TableColumn fx:id="matSpent" editable="false" prefWidth="75.0" text="Total Amount Spent" />
+                                    <TableColumn fx:id="matUsed" editable="false" prefWidth="75.0" text="Total Footage Used" />
+                                    <TableColumn fx:id="matSold" editable="false" prefWidth="75.0" text="Total Amount Sold" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
