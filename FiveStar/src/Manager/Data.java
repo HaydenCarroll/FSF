@@ -80,7 +80,7 @@ public class Data implements Serializable{
 		Data.materialList=materialList;
 	}
 	
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "unchecked" })
 	static void initalizeData() {
 		try {
 			System.out.println("Initalizing");
@@ -557,15 +557,212 @@ public class Data implements Serializable{
 		}
 		return mat;
 	}
-	public static Object getTemp() {
-		return temp;
+	public static Address findCustomerAddress(String s) {
+		Address a = null;
+		for (int i=0;i<Data.getCustomerList().size();i++) {
+			String name = Data.getCustomerList().get(i).getName();
+			if(name.equals(s)) {
+				a=Data.getCustomerList().get(i).getAddress();
+			}
+		}
+		return a;
 	}
-	public static void setTemp(Object temp) {
-		Data.temp = temp;
+	public static Ad findAd(String ad) {
+		Ad a = null;
+		for (int i=0;i<adList.size();i++) {
+			if(adList.get(i).getName().equals(ad)) {
+				a=adList.get(i);
+			}
+		}
+		return a;
 	}
-	public static void clear() {
-		Data.temp=null;
+	public static Customer findCustomer(String s) {
+		Customer c = null;
+		for (int i=0;i<customerList.size();i++) {
+			if(customerList.get(i).getName().equals(s)) {
+				c=customerList.get(i);
+			}
+		}
+		return c;
 	}
 	
+	public static Crew findCrew(String s) {
+		Crew c=null;
+		for(int i=0;i<crewList.size();i++) {
+			if(crewList.get(i).getName().equals(s)) {
+				c=crewList.get(i);
+			}
+		}
+		return c;
+	}
+	public static ObservableList<String> getRefrences(){
+		ObservableList<String> list = FXCollections.observableArrayList();
+		for(int i=0; i<adList.size();i++) {
+			list.add(adList.get(i).getName());
+		}
+		for(int i=0;i<customerList.size();i++) {
+			list.add(customerList.get(i).getName());
+		}
+		return list;
+	}
+	
+	public static ObservableList<String> getAdObservableListString(){
+		ArrayList<String> sList = new ArrayList<String>();
+		for (int i=0;i<Data.getAdList().size();i++) {
+			System.out.println(Data.getAdList().get(i).getName());
+			sList.add(Data.getAdList().get(i).getName());
+		}
+		ObservableList<String> list = FXCollections.observableArrayList();
+		list.addAll(sList);
+		return list;
+	}
+	public static ObservableList<String> getCrewObservableListString(){
+		ArrayList<String> sList = new ArrayList<String>();
+		for (int i=0;i<Data.getCrewList().size();i++) {
+			System.out.println(Data.getCrewList().get(i).getName());
+			sList.add(Data.getCrewList().get(i).getName());
+		}
+		ObservableList<String> list = FXCollections.observableArrayList();
+		list.addAll(sList);
+		return list;
+	}
+	public static ObservableList<String> getJobObservableListString(){
+		ArrayList<String> sList = new ArrayList<String>();
+		for (int i=0;i<Data.getJobList().size();i++) {
+			System.out.println(Data.getJobList().get(i).getName());
+			sList.add(Data.getJobList().get(i).getName());
+		}
+		ObservableList<String> list = FXCollections.observableArrayList();
+		list.addAll(sList);
+		return list;
+	}
+	public static ObservableList<String> getMaterialObservableListString(){
+		ArrayList<String> sList = new ArrayList<String>();
+		for (int i=0;i<Data.getMaterialList().size();i++) {
+			System.out.println(Data.getMaterialList().get(i).getName());
+			sList.add(Data.getMaterialList().get(i).getName());
+		}
+		ObservableList<String> list = FXCollections.observableArrayList();
+		list.addAll(sList);
+		return list;
+	}
+	public static ObservableList<String> getCustomerObservableListString(){
+		ArrayList<String> sList = new ArrayList<String>();
+		for (int i=0;i<Data.getCustomerList().size();i++) {
+			System.out.println(Data.getCustomerList().get(i).getName());
+			sList.add(Data.getCustomerList().get(i).getName());
+		}
+		ObservableList<String> list = FXCollections.observableArrayList();
+		list.addAll(sList);
+		return list;
+	}
+	
+	public static void remove(Object o) {
+		
+		switch (o.getClass().getSimpleName()) {
+		case "Job":
+			Job j = (Job)o;
+			for (int i=0;i<getJobList().size();i++) {
+				if(j.getName().equals(getJobList().get(i).getName())) {
+					System.out.println("Deleting "+j.getName());
+					getJobList().remove(i);
+				}
+			}
+			break;
+		case "Customer":
+			Customer c = (Customer)o;
+			for (int i=0;i<customerList.size();i++) {
+				if(c.getName().equals(customerList.get(i).getName())) {
+					System.out.println("Deleting "+c.getName());
+					customerList.remove(i);
+				}
+			}
+			break;
+		case "Material":
+			Material m = (Material)o;
+			for (int i=0; i<materialList.size();i++) {
+				if(m.getName().equals(materialList.get(i).getName())) {
+					System.out.println("Deleting "+m.getName());
+					materialList.remove(i);
+				}
+			}
+			break;
+		case "Ad":
+			Ad a = (Ad)o;
+			for (int i=0;i<adList.size();i++) {
+				if(a.getName().equals(adList.get(i).getName())) {
+					System.out.println("Deleting "+a.getName());
+					adList.remove(i);
+				}
+			}
+			break;
+		case "Crew":
+			Crew cr = (Crew)o;
+			for (int i=0;i<crewList.size();i++) {
+				if(cr.getName().equals(crewList.get(i).getName())) {
+					System.out.println("Deleting "+cr.getName());
+					crewList.remove(i);
+				}
+			}
+			break;
+		default:
+			break;
+		}
+		try {
+			updateDataFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static String getName(Object o) {
+		String name = "";
+		switch (o.getClass().getSimpleName()) {
+		case "Job":
+			Job j = (Job)o;
+			for (int i=0;i<getJobList().size();i++) {
+				if(j.getName().equals(getJobList().get(i).getName())) {
+					name = getJobList().get(i).getName();
+				}
+			}
+			break;
+		case "Customer":
+			Customer c = (Customer)o;
+			for (int i=0;i<customerList.size();i++) {
+				if(c.getName().equals(customerList.get(i).getName())) {
+					name = customerList.get(i).getName();
+				}
+			}
+			break;
+		case "Material":
+			Material m = (Material)o;
+			for (int i=0; i<materialList.size();i++) {
+				if(m.getName().equals(materialList.get(i).getName())) {
+					name = materialList.get(i).getName();
+				}
+			}
+			break;
+		case "Ad":
+			Ad a = (Ad)o;
+			for (int i=0;i<adList.size();i++) {
+				if(a.getName().equals(adList.get(i).getName())) {
+					name = adList.get(i).getName();
+				}
+			}
+			break;
+		case "Crew":
+			Crew cr = (Crew)o;
+			for (int i=0;i<crewList.size();i++) {
+				if(cr.getName().equals(crewList.get(i).getName())) {
+					name = crewList.get(i).getName();
+				}
+			}
+			break;
+		default:
+			break;
+		}
+		return name;
+	}
 
 }

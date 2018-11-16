@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,6 +21,8 @@ public class CreateCustomersController {
 	public TextField zip;
 	public TextField email;
 	public TextField phoneNum;
+	public ChoiceBox<String> refrence;
+	private boolean isRefreshed=false;
 	
 	
 	
@@ -40,13 +43,36 @@ public class CreateCustomersController {
 			e.printStackTrace();
 		}
 	}
-	
+	public void refresh() {
+		if(isRefreshed==false) {
+			refrence.setItems(Data.getRefrences());
+			isRefreshed=true;
+		}
+		
+	}
 	public void enter() {
 		Address a = new Address(street.getText(),city.getText(),state.getText(),Integer.parseInt(zip.getText()));
+		if (refrence.getSelectionModel().isEmpty()) {
+			Customer c = new Customer(name.getText(),a,Integer.parseInt(numJobs.getText()),email.getText(),phoneNum.getText());
+			System.out.println(c.toString());
+			Data.updateCustomerList(c);
+			System.out.println("Customer added");
+		}
+		else {
+			String ref = null;
+			
+			if(Data.findAd(refrence.getSelectionModel().getSelectedItem())!=null) {
+				ref=Data.findAd(refrence.getSelectionModel().getSelectedItem()).getName();
+			}
+			else {
+				ref=Data.findCustomer(refrence.getSelectionModel().getSelectedItem()).getName();
+			}
+			Customer c = new Customer(ref,name.getText(),a,Integer.parseInt(numJobs.getText()),email.getText(),phoneNum.getText());
+			System.out.println(c.toString());
+			Data.updateCustomerList(c);
+			System.out.println("Customer added");
+		}
 		
-		Customer c = new Customer(name.getText(),a,Integer.parseInt(numJobs.getText()),email.getText(),phoneNum.getText());
-		Data.updateCustomerList(c);
-		System.out.println("Customer added");
 
 		try {
 			System.out.println("Updating file");

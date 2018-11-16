@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.CreateCustomersController">
+<BorderPane onMouseEntered="#refresh" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.CreateCustomersController">
    <center>
       <BorderPane prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
@@ -66,6 +66,8 @@
                         <Label text="Zip Code:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                         <Label text="Phone Number:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <TextField fx:id="phoneNum" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="refrence" prefWidth="150.0" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                        <Label text="Select Reference" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="2">

@@ -9,46 +9,43 @@ public class Customer implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	int id;
-	int adID;
-	String name;
-	Address address;
-	int numOfJobs;
-	//String billingAddress;
-	String email;
-	String sAddress;
-	String phoneNum;
-	public Customer(int adId,String name,Address address,int numOfJobs,String email, String phoneNum) {
-		this.id=Data.getNextCustomerID();
-		this.adID=adId;
-		this.name=name;
-		this.address=address;
-		this.numOfJobs=numOfJobs;
-		//this.billingAddress=billingAddress;
-		this.email=email;
-		this.sAddress=address.toString();
-		this.phoneNum=phoneNum;
-	}
+	private String refrence;
+	private String name;
+	private Address address;
+	private int numOfJobs;
+	private String email;
+	private String sAddress;
+	private String phoneNum;
 
 	public Customer(String name,Address address,int numOfJobs,String email, String phoneNum) {
 		this.id=Data.getNextCustomerID();
-		
+		this.refrence="";
 		this.name=name;
 		this.address=address;
 		this.numOfJobs=numOfJobs;
-		//this.billingAddress=billingAddress;
 		this.email=email;
-		this.sAddress=address.toString();
+		this.setsAddress(address.toString());
+		this.phoneNum=phoneNum;
+	}
+	public Customer(String refrence,String name,Address address,int numOfJobs,String email, String phoneNum) {
+		this.id=Data.getNextCustomerID();
+		this.refrence=refrence;
+		this.name=name;
+		this.address=address;
+		this.numOfJobs=numOfJobs;
+		this.email=email;
+		this.setsAddress(address.toString());
 		this.phoneNum=phoneNum;
 	}
 
-	public int getAdID() {
-		return adID;
+	public String getRefrence() {
+		return refrence;
 	}
 	//this might not be needed
-	/*public void setAdID(int adID) {
-		this.adID = adID;
+	/*public void setAdID(int refrence) {
+		this.refrence = refrence;
 	}*/
 	public String getName() {
 		return name;
@@ -79,5 +76,16 @@ public class Customer implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String toString() {
+		return this.id+" "+this.refrence+ " "+this.name+" "+this.address.toString()+" "+this.numOfJobs+" "+this.phoneNum+" "+this.email;
+	}
+
+	public String getsAddress() {
+		return sAddress;
+	}
+
+	public void setsAddress(String sAddress) {
+		this.sAddress = sAddress;
 	}
 }

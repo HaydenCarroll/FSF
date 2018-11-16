@@ -3,6 +3,7 @@ package Manager;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,7 +30,8 @@ public class ManageController {
 	public TableColumn<Customer, String> cuAddress;
 	public TableColumn<Customer, Integer> cuNumOfJobs;
 	public TableColumn<Customer, String> cuEmail;
-	public TableColumn<Customer, String> cuPhoneNum;
+	public TableColumn<Customer, String> cuPhone;
+	public TableColumn<Customer, String> cuRefrence;
 	
 	
 	public TableView<Crew> crewTable;
@@ -53,11 +55,11 @@ public class ManageController {
 	public TableColumn<Material, Double> matSold;
 	
 	
+	
 	Stage manageStage = new Stage();
 	
 	
 	public ManageController() {
-		
 	}
 	
 	public void openManageController() {
@@ -72,7 +74,15 @@ public class ManageController {
 			e.printStackTrace();
 		}
 	}
-	
+	public void refresh() {
+		jobsTab();
+		customersTab();
+		crewsTab();
+		adTab();
+		materialTab();
+		
+		
+	}
 	public void jobsTab(){
 		try {
 		ObservableList<Job> jobList = Data.getJobObservableList();
@@ -110,14 +120,17 @@ public class ManageController {
 		ObservableList<Customer> custList = Data.getCustomerObservableList();
 		cuName.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("name"));
+		System.out.println(new PropertyValueFactory<Customer, String>("sAddress").getProperty());
 		cuAddress.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("sAddress"));
 		cuNumOfJobs.setCellValueFactory(
 				new PropertyValueFactory<Customer, Integer>("numOfJobs"));
 		cuEmail.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("email"));
-		cuPhoneNum.setCellValueFactory(
+		cuPhone.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("phoneNum"));
+		cuRefrence.setCellValueFactory(
+				new PropertyValueFactory<Customer, String>("refrence"));
 		custTable.setItems(custList);
 	}
 	
@@ -133,7 +146,6 @@ public class ManageController {
 		crewTable.setItems(crewList);
 	}
 	
-	//do ad tab
 	
 	public void adTab() {
 		try {
@@ -236,5 +248,36 @@ public class ManageController {
 		CreateMaterialsController createMaterials = new CreateMaterialsController();
 		createMaterials.newMaterials();
 	}
+	
+	public void deleteJob() {
+		Job j =jobsTable.getSelectionModel().getSelectedItem();
+		ConfirmationWindowController c = new ConfirmationWindowController(j);
+		c.confirmWindow();
+	}
+	
+	public void deleteCustomer() {
+		Customer c =custTable.getSelectionModel().getSelectedItem();
+		ConfirmationWindowController w = new ConfirmationWindowController(c);
+		w.confirmWindow();
+	}
+	
+	public void deleteCrew() {
+		Crew c =crewTable.getSelectionModel().getSelectedItem();
+		ConfirmationWindowController w = new ConfirmationWindowController(c);
+		w.confirmWindow();
+	}
+	public void deleteAd() {
+		Ad c =adTable.getSelectionModel().getSelectedItem();
+		ConfirmationWindowController w = new ConfirmationWindowController(c);
+		w.confirmWindow();
+	}
+	
+	public void deleteMat() {
+		Material c =matTable.getSelectionModel().getSelectedItem();
+		ConfirmationWindowController w = new ConfirmationWindowController(c);
+		w.confirmWindow();
+	}
+	
+	
 
 }

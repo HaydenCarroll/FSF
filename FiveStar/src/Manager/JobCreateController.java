@@ -25,10 +25,10 @@ import javafx.util.Callback;
 
 public class JobCreateController{
 	public MenuItem ref;
-	public ComboBox<Ad> adSelector;
-	public ComboBox<Crew> crewSelector;
+	public ChoiceBox<String> adSelector;
+	public ChoiceBox<String> crewSelector;
 	public ListView<String> materialSelector;
-	public ComboBox<Customer> customerSelector;
+	public ChoiceBox<String> customerSelector;
 	public TextField quote;
 	public TextField footage;
 	public TextField street;
@@ -45,11 +45,16 @@ public class JobCreateController{
 	protected static ArrayList<String> sMaterialArray;
 	public ListView<String> materialSelected;
 	public final ObservableList<String> oMatList = Data.getMaterialStringList();
+	public final ObservableList<String> oAdList =Data.getAdObservableListString();
+	public final ObservableList<String> oCrewList = Data.getCrewObservableListString();
+	public final ObservableList<String> oCustList = Data.getCustomerObservableListString();
+	
+	
 	public Button cancel;
 	//variables for select screen
 	public Button enter;
 	public TextField amount;
-	public boolean isRefreshed=false;
+	public boolean isFilled=false;
 	
 	public static String selected;
 	
@@ -105,8 +110,8 @@ public class JobCreateController{
 	
 	public void enter() {
 		Address address = new Address(street.getText(),city.getText(),state.getText(),Integer.parseInt(zipCode.getText()));
-		Ad ad = adSelector.getValue();
-		Crew crew = crewSelector.getValue();
+		Ad ad = Data.findAd(adSelector.getValue());
+		Crew crew = Data.findCrew(crewSelector.getValue());
 		System.out.println(sMaterialArray.size());
 		ArrayList<Material> material = new ArrayList<Material>();
 		for (int i=0;i<sMaterialArray.size();i++) {
@@ -124,7 +129,7 @@ public class JobCreateController{
 			
 		}
 		match(material);
-		Customer cust = customerSelector.getValue();
+		Customer cust = Data.findCustomer(customerSelector.getValue());
 		Job job = new Job(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText());
 		Data.updateJobList(job);
 		try {
@@ -133,7 +138,7 @@ public class JobCreateController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clearMem();
+		cancel();
 	}
 	
 	public void match(ArrayList<Material> material) {
@@ -215,9 +220,18 @@ public class JobCreateController{
 			ObservableList<String> oList= FXCollections.observableArrayList();
 			oList.addAll(sMaterialArray);
 			materialSelected.setItems(oList);
-			this.isRefreshed=true;
+			
+			adSelector.setItems(this.oAdList);
+			crewSelector.setItems(this.oCrewList);
+			customerSelector.setItems(this.oCustList);
+			try{
+				autoFill();
+			}catch(Exception e) {
+				System.out.println("customerSelectorNull");
+			}
 	//	}
-		System.out.println("klsadjf");
+			
+		
 
 	}
 	
@@ -228,6 +242,20 @@ public class JobCreateController{
 		materials = new ArrayList<Material>();
 		sMaterialArray = new ArrayList<String>();
 	
+		
+	}
+	public void autoFill() {
+		if(customerSelector.getSelectionModel().getSelectedItem()!=null&&this.isFilled==false) {
+			String name =customerSelector.getSelectionModel().getSelectedItem();
+			Customer c = Data.findCustomer(name);
+			Address a = c.getAddress();
+			this.state.setText(a.getState());
+			this.street.setText(a.getStreet());
+			this.zipCode.setText(a.getZipcode()+"");
+			this.city.setText(a.getCity());
+			this.isFilled=true;
+		}
+		
 		
 	}
 

@@ -53,7 +53,7 @@ public class Crew implements Serializable{
 	public void populateSJobsList() {
 		sJobsList="";
 		for(int i=0;i<jobList.size();i++) {
-			sJobsList+=jobList.get(i).getJobName();
+			sJobsList+=jobList.get(i).getName();
 		}
 	}
 	public int getCrewID() {

@@ -1,6 +1,7 @@
 package Manager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 //(Andres R) This class is used to create the Ad objects that contain the data about the advertisements or other references 
 //it should contain the name of the person/ad, the location/zone it is in (if a location is not passed is should default to online),
@@ -18,7 +19,8 @@ public class Ad implements Serializable{
 	private double adCost;
 	private String name;
 	private int numberOfUses;
-	private String location;
+	private ArrayList<String> location;
+	private String sLocation;
 	private int amtSold;
 	private double value;
 	
@@ -27,7 +29,9 @@ public class Ad implements Serializable{
 		this.name = name;
 		this.adCost = adCost;
 		this.numberOfUses = numberOfUses;
-		this.location = "Online";
+		this.location=new ArrayList<String>();
+		this.location.add("Online");
+		updateSLocation();
 	}
 	
 	public Ad(String name, String location, double adCost, int numberOfUses, int amtSold){
@@ -35,8 +39,19 @@ public class Ad implements Serializable{
 		this.name = name;
 		this.adCost = adCost;
 		this.numberOfUses = numberOfUses;
-		this.location = location;
+		this.location=new ArrayList<String>();
+		this.location.add(location);
 		this.amtSold = amtSold;
+		updateSLocation();
+	}
+	public Ad(String name, ArrayList<String> location, double adCost, int numberOfUses, double value){
+		this.adID=Data.getNextAdID();
+		this.name = name;
+		this.adCost = adCost;
+		this.numberOfUses = numberOfUses;
+		this.location=location;
+		this.value = value;
+		updateSLocation();
 	}
 	
 	public Ad(){
@@ -44,9 +59,17 @@ public class Ad implements Serializable{
 		this.name = "<Default Name>";
 		this.adCost = 0;
 		this.numberOfUses = 0;
-		this.location = "<Default Location>";
+		this.location=new ArrayList<String>();
+		this.location.add("<Default Location>");
 	
 	}
+	/*public Ad(String name) {
+		this.adID=Data.getNextAdID();
+		this.name=name;
+		this.adCost=0;
+		this.numberOfUses=0;
+		this.location=Data.findCustomerAddress(name).getZipcode()+"";
+	}*/
 	public int getAdID() {
 		return this.adID;
 	}
@@ -86,12 +109,18 @@ public class Ad implements Serializable{
 		this.numberOfUses = numberOfUses;
 	}
 
-	public String getLocation() {
+	public ArrayList<String> getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(ArrayList<String> location) {
 		this.location = location;
+	}
+	public void updateLocation(ArrayList<String> location) {
+		this.location.addAll(location);
+	}
+	public void updateLocation(String location) {
+		this.location.add(location);
 	}
 
 	public int getAmtSold() {
@@ -111,6 +140,27 @@ public class Ad implements Serializable{
 	}
 	public void updateValue() {
 		this.value = Data.getAdValue(this);
+	}
+
+	public String getsLocation() {
+		return sLocation;
+	}
+
+	public void setsLocation(String sLocation) {
+		this.sLocation = sLocation;
+	}
+	
+	public String updateSLocation() {
+		String s = "";
+		for (int i=0;i<location.size();i++) {
+			if(location.size()-i==1) {
+				System.out.println("adding "+location.get(i));
+				s+=location.get(i);
+			}
+			System.out.println("adding "+location.get(i)+", ");
+			s+=location.get(i)+" ,";
+		}
+		return s;
 	}
 	
 	

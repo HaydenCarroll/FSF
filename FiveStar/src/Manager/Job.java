@@ -15,7 +15,7 @@ public class Job implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int jobID;
-	private String jobName;
+	private String name;
 	private Customer customer;
 	private Ad ad;
 	private Crew crew;
@@ -53,7 +53,7 @@ public class Job implements Serializable{
 		this.laborCost=laborCost;
 		this.date=date;
 		this.customer=customer;
-		this.setJobName(jobName);
+		this.setName(jobName);
 		this.setCusName(customer.getName());
 		this.setsDate(date.toString());
 		this.setCityName(address.getCity());
@@ -76,6 +76,10 @@ public class Job implements Serializable{
 		this.laborCost=labor;
 		this.totalMatCost=matCost;
 		this.amntCharged=charged;
+		this.sDateCompleted=date.toString();
+		this.completed=true;
+		this.profit=charged-(labor+matCost);
+		
 	}
 	
 	public double getTotalMatCost() {
@@ -215,11 +219,11 @@ public class Job implements Serializable{
 	public void setProfit(double profit) {
 		this.profit = profit;
 	}
-	public String getJobName() {
-		return jobName;
+	public String getName() {
+		return name;
 	}
-	public void setJobName(String jobName) {
-		this.jobName = jobName;
+	public void setName(String jobName) {
+		this.name = jobName;
 	}
 	public ArrayList<Material> getMatList() {
 		return matList;
