@@ -53,6 +53,9 @@ public class CreateCustomersController {
 	public void enter() {
 		Address a = new Address(street.getText(),city.getText(),state.getText(),Integer.parseInt(zip.getText()));
 		if (refrence.getSelectionModel().isEmpty()) {
+			
+			System.out.println(phoneNum.getText());
+			
 			Customer c = new Customer(name.getText(),a,Integer.parseInt(numJobs.getText()),email.getText(),phoneNum.getText());
 			System.out.println(c.toString());
 			Data.updateCustomerList(c);
@@ -67,6 +70,10 @@ public class CreateCustomersController {
 			else {
 				ref=Data.findCustomer(refrence.getSelectionModel().getSelectedItem()).getName();
 			}
+
+			
+			System.out.println(phoneNum.getText());
+			
 			Customer c = new Customer(ref,name.getText(),a,Integer.parseInt(numJobs.getText()),email.getText(),phoneNum.getText());
 			System.out.println(c.toString());
 			Data.updateCustomerList(c);

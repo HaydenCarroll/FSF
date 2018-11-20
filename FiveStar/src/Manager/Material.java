@@ -14,7 +14,7 @@ public class Material implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int materialID;
 	private String name;
-	//private double pricePF;
+	private double pricePF;
 	private double costPU;
 	private double totalAmtSpent;
 	private double totalFootage;
@@ -23,26 +23,26 @@ public class Material implements Serializable{
 	public Material(){
 		this.materialID=Data.getNextMaterialID();
 		this.name = "<Default name>";
-		//this.pricePF = 0;
+		this.setPricePF(0);
 		this.costPU = 0;
 		this.totalAmtSpent = 0;
 		this.totalFootage = 0;
 		this.totalAmtSold = 0;
 	}
 	
-	public Material(String name, double costPU){
+	public Material(String name, double costPU, double pricePF){
 		this.materialID=Data.getNextMaterialID();
 		this.name = name;
-		//this.pricePF = PricePF;
+		this.setPricePF(pricePF);
 		this.costPU = costPU;
 		this.totalAmtSpent = 0;
 		this.totalFootage = 0;
 		this.totalAmtSold = 0;
 	}
-	public Material(String name, double costPU, double totalAmt, double totalFootage, double totalAmtSold){
+	public Material(String name, double costPU, double totalAmt, double totalFootage, double totalAmtSold,double pricePF){
 		this.materialID=Data.getNextMaterialID();
 		this.name = name;
-		//this.pricePF = PricePF;
+		this.setPricePF(pricePF);
 		this.costPU = costPU;
 		this.totalAmtSpent = totalAmt;
 		this.totalFootage = totalFootage;
@@ -126,6 +126,14 @@ public class Material implements Serializable{
 	@Override
 	public String toString() {
 		return this.name;
+	}
+
+	public double getPricePF() {
+		return pricePF;
+	}
+
+	public void setPricePF(double pricePF) {
+		this.pricePF = pricePF;
 	}
 	
 	

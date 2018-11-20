@@ -81,7 +81,9 @@ public class Crew implements Serializable{
 		this.jobList = jobList;
 	}
 	
-	
+	public String toString() {
+		return this.name;
+	}
 	
 
 }

@@ -359,46 +359,46 @@ public class Data implements Serializable{
 	
 	
 	public static int getNextJobID() {
-		if(jobList.isEmpty()||jobList.equals(null)) {
+		if(Data.getJobList().isEmpty()) {
 			return 0;
 		}
-		return jobList.size()-1;
+		return Data.getJobList().size();
 	}
 	
 	public static int getNextCustomerID() {
-		if(customerList.isEmpty()||customerList.equals(null)) {
+		if(Data.getCustomerList().isEmpty()) {
 			return 0;
 		} else {
-		return customerList.size()-1;
+		return Data.getCustomerList().size();
 		}
 	}
 	
 	public static int getNextCrewID() {
-		if(crewList.isEmpty()) {
+		if(Data.getCrewList().isEmpty()) {
 			return 0;
 		}
-		return crewList.size()-1;
+		return Data.getCrewList().size();
 	}
 	
 	public static int getNextAddressID() {
-		if(addressList.isEmpty()){
+		if(Data.getAddressList().isEmpty()){
 			return 0;
 		}
-		return addressList.size()-1;
+		return Data.getAddressList().size();
 	}
 	
 	public static int getNextAdID() {
-		if(adList.isEmpty()) {
+		if(Data.getAdList().isEmpty()) {
 			return 0;
 		}
-		return adList.size()-1;
+		return Data.getAdList().size();
 	}
 	
 	public static int getNextMaterialID() {
-		if(materialList.isEmpty()||materialList.equals(null)) {
+		if(Data.getMaterialList().isEmpty()) {
 			return 0;
 		}
-		return materialList.size()-1;
+		return Data.getMaterialList().size();
 	}
 
 	public static Ad getMostSeenAd(ArrayList<Ad> ads) {
@@ -649,7 +649,7 @@ public class Data implements Serializable{
 	public static ObservableList<String> getCustomerObservableListString(){
 		ArrayList<String> sList = new ArrayList<String>();
 		for (int i=0;i<Data.getCustomerList().size();i++) {
-			System.out.println(Data.getCustomerList().get(i).getName());
+			System.out.println(Data.getCustomerList().get(i).getName()+"*****");
 			sList.add(Data.getCustomerList().get(i).getName());
 		}
 		ObservableList<String> list = FXCollections.observableArrayList();
@@ -702,6 +702,69 @@ public class Data implements Serializable{
 				if(cr.getName().equals(crewList.get(i).getName())) {
 					System.out.println("Deleting "+cr.getName());
 					crewList.remove(i);
+				}
+			}
+			break;
+		default:
+			break;
+		}
+		try {
+			updateDataFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void replace(Object o,Object n) {
+		
+		switch (o.getClass().getSimpleName()) {
+		case "Job":
+			Job j = (Job)n;
+			Job oj = (Job)o;
+			for (int i=0;i<getJobList().size();i++) {
+				if(oj.getName().equals(getJobList().get(i).getName())) {
+					System.out.println("Replacing "+oj.getName());
+					getJobList().set(i, j);
+				}
+			}
+			break;
+		case "Customer":
+			Customer c = (Customer)n;
+			Customer oc = (Customer)o;
+			for (int i=0;i<customerList.size();i++) {
+				if(oc.getName().equals(customerList.get(i).getName())) {
+					System.out.println("Replacing "+oc.getName());
+					customerList.set(i, c);
+				}
+			}
+			break;
+		case "Material":
+			Material m = (Material)n;
+			Material om = (Material)o;
+			for (int i=0; i<materialList.size();i++) {
+				if(om.getName().equals(materialList.get(i).getName())) {
+					System.out.println("Replacing "+om.getName());
+					materialList.set(i, m);
+				}
+			}
+			break;
+		case "Ad":
+			Ad a = (Ad)n;
+			Ad oa = (Ad)o;
+			for (int i=0;i<adList.size();i++) {
+				if(oa.getName().equals(adList.get(i).getName())) {
+					System.out.println("Replacing "+oa.getName());
+					adList.set(i, a);
+				}
+			}
+			break;
+		case "Crew":
+			Crew cr = (Crew)n;
+			Crew ocr = (Crew)o;
+			for (int i=0;i<crewList.size();i++) {
+				if(ocr.getName().equals(crewList.get(i).getName())) {
+					System.out.println("Replacing "+ocr.getName());
+					crewList.set(i, cr);
 				}
 			}
 			break;

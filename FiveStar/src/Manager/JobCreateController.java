@@ -38,6 +38,7 @@ public class JobCreateController{
 	public DatePicker date;
 	public TextField laborCost;
 	public TextField jobName;
+	public TextField fenceStyle;
 	private static ArrayList<String> matMatch;
 	private static ArrayList<Integer> matAmount;
 	private static ArrayList<Material> materials;
@@ -130,7 +131,8 @@ public class JobCreateController{
 		}
 		match(material);
 		Customer cust = Data.findCustomer(customerSelector.getValue());
-		Job job = new Job(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText());
+		Job job = new Job(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
+				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText())  ;
 		Data.updateJobList(job);
 		try {
 			Data.updateDataFile();

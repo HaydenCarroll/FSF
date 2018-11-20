@@ -1,6 +1,7 @@
 package Manager;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 //(Joey) This class should have a customer id, Ad id, name, address object, number of jobs, billing address, and email.
 //use the data class to find the customer id (Data.getNextCustomerId()) 
@@ -17,9 +18,15 @@ public class Customer implements Serializable{
 	private int numOfJobs;
 	private String email;
 	private String sAddress;
-	private String phoneNum;
+	private String phone;
 
-	public Customer(String name,Address address,int numOfJobs,String email, String phoneNum) {
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public Customer(String name,Address address,int numOfJobs,String email, String phone) {
 		this.id=Data.getNextCustomerID();
 		this.refrence="";
 		this.name=name;
@@ -27,9 +34,9 @@ public class Customer implements Serializable{
 		this.numOfJobs=numOfJobs;
 		this.email=email;
 		this.setsAddress(address.toString());
-		this.phoneNum=phoneNum;
+		this.phone=phone;
 	}
-	public Customer(String refrence,String name,Address address,int numOfJobs,String email, String phoneNum) {
+	public Customer(String refrence,String name,Address address,int numOfJobs,String email, String phone) {
 		this.id=Data.getNextCustomerID();
 		this.refrence=refrence;
 		this.name=name;
@@ -37,7 +44,7 @@ public class Customer implements Serializable{
 		this.numOfJobs=numOfJobs;
 		this.email=email;
 		this.setsAddress(address.toString());
-		this.phoneNum=phoneNum;
+		this.phone=phone;
 	}
 
 	public String getRefrence() {
@@ -78,7 +85,13 @@ public class Customer implements Serializable{
 		this.email = email;
 	}
 	public String toString() {
-		return this.id+" "+this.refrence+ " "+this.name+" "+this.address.toString()+" "+this.numOfJobs+" "+this.phoneNum+" "+this.email;
+		Field[] f =this.getClass().getDeclaredFields();
+		String var = "";
+		for (int i=0;i<f.length;i++) {
+			var+=f[i].getName()+" ";
+		}
+		return this.id+" "+this.refrence+ " "+this.name+" "+this.address.toString()+" "+this.numOfJobs+" "+this.phone+" "+this.email+var;
+		
 	}
 
 	public String getsAddress() {

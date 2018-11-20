@@ -13,7 +13,7 @@ public class Job implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	private int jobID;
 	private String name;
 	private Customer customer;
@@ -40,7 +40,7 @@ public class Job implements Serializable{
 	private double totalMatCost;
 	private double amntCharged;
 	
-	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName) {
+	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName, String fenceName) {
 		this.jobID=Data.getNextJobID();
 		this.ad=ad;
 		this.ad.updateAdUse();
@@ -55,11 +55,11 @@ public class Job implements Serializable{
 		this.customer=customer;
 		this.setName(jobName);
 		this.setCusName(customer.getName());
-		this.setsDate(date.toString());
+		this.setSDate(date.toString());
 		this.setCityName(address.getCity());
 		this.setFenceName(fenceName);
-		this.setsAd(ad.getName());
-		this.setsCrew(crew.getName());
+		this.setSAd(ad.getName());
+		this.setSCrew(crew.getName());
 		this.setTotalMatCost(getTotalMatCost());
 		this.dateCompleted=null;
 		this.completed=false;
@@ -177,10 +177,10 @@ public class Job implements Serializable{
 	public void setDateCompleted(LocalDate dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
-	public String getsDate() {
+	public String getSDate() {
 		return sDate;
 	}
-	public void setsDate(String sDate) {
+	public void setSDate(String sDate) {
 		this.sDate = sDate;
 	}
 	public String getCusName() {
@@ -201,16 +201,16 @@ public class Job implements Serializable{
 	public void setFenceName(String fenceName) {
 		this.fenceName = fenceName;
 	}
-	public String getsCrew() {
+	public String getSCrew() {
 		return sCrew;
 	}
-	public void setsCrew(String sCrew) {
+	public void setSCrew(String sCrew) {
 		this.sCrew = sCrew;
 	}
-	public String getsAd() {
+	public String getSAd() {
 		return sAd;
 	}
-	public void setsAd(String sAd) {
+	public void setSAd(String sAd) {
 		this.sAd = sAd;
 	}
 	public double getProfit() {

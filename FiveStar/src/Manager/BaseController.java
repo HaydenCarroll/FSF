@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class BaseController {
-	TableColumn<Job, Integer> saleNo;
+	/*TableColumn<Job, Integer> saleNo;
 	TableColumn<Job, String> date;
 	TableColumn<Job, String> name;
 	TableColumn<Job, String> city;
@@ -23,7 +23,20 @@ public class BaseController {
 	TableColumn<Job, String> crew;
 	TableColumn<Job, Boolean> sold;
 	TableColumn<Job, String> profit;
-	TableView<Job> tv;
+	TableView<Job> tv;*/
+	
+	public TableView<Job> jobsTable;
+	public TableColumn<Job, Integer> saleNo;
+	public TableColumn<Job, String> date;
+	public TableColumn<Job, String> name;
+	public TableColumn<Job, String> city;
+	public TableColumn<Job, String> fenceStyle;
+	public TableColumn<Job, Double> feet;
+	public TableColumn<Job, Double> quote;
+	public TableColumn<Job, String> reference;
+	public TableColumn<Job, String> crew;
+	public TableColumn<Job, Boolean> sold;
+	public TableColumn<Job, Double> profit;
 	
 	public void newJob() {
 		JobCreateController startNewJob =new JobCreateController();
@@ -35,18 +48,50 @@ public class BaseController {
 		manage.openManageController();
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
-	}
+	}*/
 	
 	
-	public void initalize() {
+	/*public void initalize() {
 		ObservableList<Job> jobList = Data.getJobObservableList();
 		saleNo.setCellValueFactory(
 				new PropertyValueFactory<Job, Integer>("jobID"));
 		date.setCellValueFactory(
 				new PropertyValueFactory<Job, String>("sDate"));
 		tv.setItems(jobList);
+		
+	}*/
+	public void jobsTab(){
+		try {
+		ObservableList<Job> jobList = Data.getJobObservableList();
+		saleNo.setCellValueFactory(
+				new PropertyValueFactory<Job, Integer>("jobID"));
+		date.setCellValueFactory(
+				new PropertyValueFactory<Job, String>("sDate"));
+		name.setCellValueFactory(
+				new PropertyValueFactory<Job, String>("name"));
+		city.setCellValueFactory(
+				new PropertyValueFactory<Job, String>("cityName"));
+		fenceStyle.setCellValueFactory(
+				new PropertyValueFactory<Job, String>("fenceName"));
+		feet.setCellValueFactory(
+				new PropertyValueFactory<Job, Double>("footage"));
+		quote.setCellValueFactory(
+				new PropertyValueFactory<Job, Double>("quote"));
+		reference.setCellValueFactory(
+				new PropertyValueFactory<Job, String>("sAd"));
+		crew.setCellValueFactory(
+				new PropertyValueFactory<Job, String>("sCrew"));
+		sold.setCellValueFactory(
+				new PropertyValueFactory<Job, Boolean>("completed"));
+		profit.setCellValueFactory(
+				new PropertyValueFactory<Job, Double>("profit"));
+		jobsTable.setItems(jobList);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

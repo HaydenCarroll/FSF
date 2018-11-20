@@ -30,7 +30,7 @@ public class ManageController {
 	public TableColumn<Customer, String> cuAddress;
 	public TableColumn<Customer, Integer> cuNumOfJobs;
 	public TableColumn<Customer, String> cuEmail;
-	public TableColumn<Customer, String> cuPhone;
+	public TableColumn<Customer, String> cuPhoneNum;
 	public TableColumn<Customer, String> cuRefrence;
 	
 	
@@ -75,11 +75,13 @@ public class ManageController {
 		}
 	}
 	public void refresh() {
+		Data.initalizeData();
 		jobsTab();
 		customersTab();
 		crewsTab();
 		adTab();
 		materialTab();
+		System.out.println("Refresh");
 		
 		
 	}
@@ -91,7 +93,7 @@ public class ManageController {
 		date.setCellValueFactory(
 				new PropertyValueFactory<Job, String>("sDate"));
 		name.setCellValueFactory(
-				new PropertyValueFactory<Job, String>("jobName"));
+				new PropertyValueFactory<Job, String>("name"));
 		city.setCellValueFactory(
 				new PropertyValueFactory<Job, String>("cityName"));
 		fenceStyle.setCellValueFactory(
@@ -120,15 +122,14 @@ public class ManageController {
 		ObservableList<Customer> custList = Data.getCustomerObservableList();
 		cuName.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("name"));
-		System.out.println(new PropertyValueFactory<Customer, String>("sAddress").getProperty());
 		cuAddress.setCellValueFactory(
-				new PropertyValueFactory<Customer, String>("sAddress"));
+				new PropertyValueFactory<Customer, String>("address"));
 		cuNumOfJobs.setCellValueFactory(
 				new PropertyValueFactory<Customer, Integer>("numOfJobs"));
 		cuEmail.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("email"));
-		cuPhone.setCellValueFactory(
-				new PropertyValueFactory<Customer, String>("phoneNum"));
+		cuPhoneNum.setCellValueFactory(
+				new PropertyValueFactory<Customer, String>("phone"));
 		cuRefrence.setCellValueFactory(
 				new PropertyValueFactory<Customer, String>("refrence"));
 		custTable.setItems(custList);
@@ -230,7 +231,9 @@ public class ManageController {
 	
 	public void openEditAdvertisments() {
 		EditAdvertismentsController editAdvertisments = new EditAdvertismentsController();
+		editAdvertisments.sendInfo(adTable.getSelectionModel().getSelectedItem());
 		editAdvertisments.editAdvertisments();
+		editAdvertisments=null;
 	}
 	
 	public void openCreateAdvertisments() {

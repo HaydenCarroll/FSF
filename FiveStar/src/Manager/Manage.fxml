@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane onMouseEntered="#refresh" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.ManageController">
+<BorderPane onMouseEntered="#refresh" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.ManageController">
    <center>
       <BorderPane onMouseEntered="#refresh" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <top>
@@ -105,7 +114,7 @@
                                   <TableColumn fx:id="cuAddress" editable="false" prefWidth="75.0" text="Address" />
                                     <TableColumn fx:id="crNumOfJobs" editable="false" prefWidth="168.0" text="Number Of Jobs" />
                                     <TableColumn fx:id="cuEmail" editable="false" prefWidth="231.0" text="Email" />
-                                    <TableColumn fx:id="cuPhone" editable="false" prefWidth="75.0" text="Phone Number" />
+                                    <TableColumn fx:id="cuPhoneNum" editable="false" prefWidth="75.0" text="Phone Number" />
                                     <TableColumn fx:id="cuRefrence" editable="false" prefWidth="75.0" text="Refrence" />
                                 </columns>
                                  <columnResizePolicy>
