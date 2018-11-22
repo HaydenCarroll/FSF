@@ -523,7 +523,7 @@ public class Data implements Serializable{
 		ArrayList<Job> jobListByDate=new ArrayList<Job>();
 		
 		for(int i=0;i<jobList.size();i++) {
-			if (jobList.get(i).getDateCompleted()!=null && jobList.get(i).getDateCompleted().isBefore(end)) {
+			if (jobList.get(i).getDateCompleted()!=null && jobList.get(i).getDateCompleted().isBefore(end)&& jobList.get(i).getDateCompleted().isAfter(start)) {
 				jobListByDate.add(jobList.get(i));
 			}
 		}
@@ -537,6 +537,53 @@ public class Data implements Serializable{
 		}
 		return num;
 	}
+	
+	public static double getTotalSpend(ArrayList<Job> list) {
+		double num =0;
+		for(int i=0; i<list.size();i++) {
+			num+=list.get(i).getLaborCost()+list.get(i).getTotalMatCost();
+		}
+		return num;
+	}
+	
+	public static ArrayList<Job> getJobListByCustomer(Customer c) {
+		ArrayList<Job> list = new ArrayList<Job>();
+		ArrayList<Job> jList = Data.getJobList();
+		for(int i=0;i<jList.size();i++) {
+			if(jList.get(i).getCustomer().getName().equals(c.getName())) {
+				list.add(jList.get(i));
+			}
+		}
+		return list;
+	}
+	
+	public static Job getEarliestJob(ArrayList<Job> list) {
+		if(list==null||list.size()<1) {
+			return null;
+		}
+		Job j = list.get(0);
+		for(int i=1; i<list.size();i++) {
+			if(j.getDateCompleted().isAfter(list.get(i).getDateCompleted())) {
+				j=list.get(i);
+			}
+		}
+		return j;
+	}
+	
+	public static Job getLatestJob(ArrayList<Job> list) {
+		if(list==null||list.size()<1) {
+			return null;
+		}
+		Job j = list.get(0);
+		for(int i=1; i<list.size();i++) {
+			if(j.getDateCompleted().isBefore(list.get(i).getDateCompleted())) {
+				j=list.get(i);
+			}
+		}
+		return j;
+	}
+	
+	
 	public static ArrayList<Goal> getGoalList() {
 		return goalList;
 	}
