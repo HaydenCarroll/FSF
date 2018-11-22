@@ -18,7 +18,9 @@ public class Crew implements Serializable{
 	private LinkedList<Job> jobList;
 	private String sJobsList;
 	
-	
+	public Crew() {
+		
+	}
 	public Crew(String name) {
 		this.crewID=Data.getNextCrewID();
 		this.name=name;

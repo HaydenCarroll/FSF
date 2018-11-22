@@ -23,6 +23,9 @@ public class Address implements Serializable{
 		this.state=state;
 		this.zipcode=zipcode;
 	}
+	public Address() {
+		
+	}
 	
 	public String toString() {
 		return (""+this.street+", "+this.city+", "+this.state+", "+this.zipcode);

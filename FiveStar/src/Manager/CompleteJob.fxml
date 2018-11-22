@@ -18,14 +18,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.EditJobsController">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.CompleteJobController">
    <center>
       <BorderPane onMouseEntered="#refresh" prefHeight="400.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <bottom>
             <HBox alignment="CENTER" prefHeight="65.0" prefWidth="560.0" spacing="30.0" translateX="-20.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-                  <Button mnemonicParsing="false" onAction="#enter" text="Enter" />
+                  <Button mnemonicParsing="false" onAction="#enter" text="Complete Job" />
                </children>
             </HBox>
          </bottom>
@@ -49,7 +49,7 @@
                   <TextField fx:id="quote" promptText="Quote" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
                   <TextField fx:id="footage" promptText="Footage" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
                   <CheckBox fx:id="repair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Repair" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <DatePicker fx:id="date" onAction="#dateEnter" promptText="Date" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="date" onAction="#dateEnter" promptText="Date" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
                   <TextField fx:id="street" promptText="Street" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
                   <TextField fx:id="city" promptText="City" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
                   <TextField fx:id="state" promptText="State" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
@@ -72,6 +72,13 @@
                   <Label text="Labor Cost" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
                   <Label text="Job Name" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP" />
                   <Label text="Fence Style" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+                  <Label text="Date Started" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+                  <TextField fx:id="matCost" promptText="Materials Cost" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+                  <TextField fx:id="amntCharged" promptText="Amount Charged" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+                  <Label text="Materials Cost" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+                  <Label text="Amount Charged" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+                  <DatePicker fx:id="endDate" promptText="Date Completed" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                  <Label text="Date Completed" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />

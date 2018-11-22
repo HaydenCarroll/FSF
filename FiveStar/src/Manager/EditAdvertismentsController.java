@@ -31,6 +31,7 @@ public class EditAdvertismentsController{
 	
 	private static ArrayList<String> curLocations;
 	private static ObservableList<String> oList;
+	private boolean isInitalized = false;
 
 	static {
 		curLocations=new ArrayList<String>();
@@ -74,14 +75,23 @@ public class EditAdvertismentsController{
 	
 
 	public void refresh() {
+		if(isInitalized==false) {
+			initalize();
+		}else {
+			locations.setItems(oList);
+		}
+		
+		
+		
+	}
+	public void initalize() {
 		oList.setAll(curLocations);
 		locations.setItems(oList);
 		name.setText(oName);
 		numUses.setText(Integer.toString(oNumUses));
 		cost.setText(Double.toString(oCost));
 		profit.setText(Double.toString(oProfit));
-		
-		
+		isInitalized=true;
 	}
 	
 	public void insert() {

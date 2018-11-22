@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -39,6 +40,7 @@ public class JobCreateController{
 	public TextField laborCost;
 	public TextField jobName;
 	public TextField fenceStyle;
+	public CheckBox repair;
 	private static ArrayList<String> matMatch;
 	private static ArrayList<Integer> matAmount;
 	private static ArrayList<Material> materials;
@@ -132,7 +134,10 @@ public class JobCreateController{
 		match(material);
 		Customer cust = Data.findCustomer(customerSelector.getValue());
 		Job job = new Job(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
-				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText())  ;
+				Double.parseDouble(footage.getText()),address,
+				Double.parseDouble(laborCost.getText()),date.getValue(),
+				cust, jobName.getText(),fenceStyle.getText(),
+				repair.isSelected())  ;
 		Data.updateJobList(job);
 		try {
 			Data.updateDataFile();
@@ -216,22 +221,19 @@ public class JobCreateController{
 	}
 	
 	public void refresh() {
-		//if(!this.isRefreshed) {
 
-			materialSelector.setItems(this.oMatList);
-			ObservableList<String> oList= FXCollections.observableArrayList();
-			oList.addAll(sMaterialArray);
-			materialSelected.setItems(oList);
-			
-			adSelector.setItems(this.oAdList);
-			crewSelector.setItems(this.oCrewList);
-			customerSelector.setItems(this.oCustList);
-			try{
-				autoFill();
-			}catch(Exception e) {
-				System.out.println("customerSelectorNull");
-			}
-	//	}
+		materialSelector.setItems(this.oMatList);
+		ObservableList<String> oList= FXCollections.observableArrayList();
+		oList.addAll(sMaterialArray);
+		materialSelected.setItems(oList);	
+		adSelector.setItems(this.oAdList);
+		crewSelector.setItems(this.oCrewList);
+		customerSelector.setItems(this.oCustList);
+		try{
+			autoFill();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 			
 		
 

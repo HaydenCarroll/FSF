@@ -55,21 +55,8 @@ public class Ad implements Serializable{
 	}
 	
 	public Ad(){
-		this.adID=Data.getNextAdID();
-		this.name = "<Default Name>";
-		this.adCost = 0;
-		this.numberOfUses = 0;
-		this.location=new ArrayList<String>();
-		this.location.add("<Default Location>");
 	
 	}
-	/*public Ad(String name) {
-		this.adID=Data.getNextAdID();
-		this.name=name;
-		this.adCost=0;
-		this.numberOfUses=0;
-		this.location=Data.findCustomerAddress(name).getZipcode()+"";
-	}*/
 	public int getAdID() {
 		return this.adID;
 	}

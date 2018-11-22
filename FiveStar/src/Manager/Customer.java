@@ -26,6 +26,10 @@ public class Customer implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	public Customer() {
+		
+	}
 	public Customer(String name,Address address,int numOfJobs,String email, String phone) {
 		this.id=Data.getNextCustomerID();
 		this.refrence="";

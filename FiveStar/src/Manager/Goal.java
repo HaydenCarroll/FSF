@@ -13,8 +13,16 @@ public class Goal implements Serializable{
 	private LocalDate start;
 	private LocalDate end;
 	private double goalAmt;
-	private double cost;
 	
+	
+	public Goal() {
+		
+	}
+	public Goal(LocalDate start,LocalDate end, double goalAmt) {
+		this.start=start;
+		this.end=end;
+		this.goalAmt=goalAmt;
+	}
 	
 	public LocalDate getStart() {
 		return start;
@@ -33,12 +41,6 @@ public class Goal implements Serializable{
 	}
 	public void setGoalAmt(double goalAmt) {
 		this.goalAmt = goalAmt;
-	}
-	public double getCost() {
-		return cost;
-	}
-	public void setCost(double cost) {
-		this.cost = cost;
 	}
 	
 	public double getRevSoFar() {

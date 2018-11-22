@@ -280,6 +280,17 @@ public class Data implements Serializable{
 		return jobList;
 	}
 	
+	public static ObservableList<Job> getCurrentJobObservableList(){
+		ObservableList<Job> jobList = FXCollections.observableArrayList();
+		jobList.addAll(Data.getJobList());
+		for(int i=0;i<jobList.size();i++) {
+			if(jobList.get(i).isCompleted()) {
+				jobList.remove(i);
+			}
+		}
+		return jobList;
+	}
+	
 	public static ObservableList<Customer> getCustomerObservableList(){
 		ObservableList<Customer> customerList = FXCollections.observableArrayList();
 		customerList.addAll(Data.getCustomerList());

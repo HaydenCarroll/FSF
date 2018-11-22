@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class EditJobsController {
+public class EditCompletedJobController {
 	
 	//Ive cloned the job create controller now I just need to adapt it to edit jobs
 	
@@ -39,7 +39,12 @@ public class EditJobsController {
 	public TextField laborCost;
 	public TextField jobName;
 	public TextField fenceStyle;
+	
+	public TextField matCost;
+	public TextField amntCharged;
+	public DatePicker endDate;
 	public CheckBox repair;
+	
 	private static ArrayList<String> matMatch;
 	private static ArrayList<Integer> matAmount;
 	private static ArrayList<Material> materials;
@@ -67,7 +72,11 @@ public class EditJobsController {
 	private static Job oJob;
 	private static Job nJob;
 	private boolean isInitalized = false;
+	private static String oMatCost;
+	private static String oAmntCharged;
+	private static LocalDate oEndDate;
 	private static boolean oIsRepair;
+	
 	
 	public Button cancel;
 	//variables for select screen
@@ -90,7 +99,7 @@ public class EditJobsController {
 	
 	Stage jobEditStage = new Stage();
 	
-	public EditJobsController() {
+	public EditCompletedJobController() {
 		
 		
 		
@@ -117,6 +126,9 @@ public class EditJobsController {
 		oAd=new Ad();
 		oCust=new Customer();
 		nJob=new Job();
+		oMatCost="";
+		oAmntCharged="";
+		oEndDate=LocalDate.MIN;
 		oIsRepair=false;
 	}
 	
@@ -164,8 +176,9 @@ public class EditJobsController {
 		}
 		match(material);
 		Customer cust = Data.findCustomer(customerSelector.getValue());
-		nJob.setJob(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
-				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText(),repair.isSelected())  ;
+		nJob.setCompletedJob(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
+				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText()
+				,endDate.getValue(),Double.parseDouble(matCost.getText()),Double.parseDouble(amntCharged.getText()),repair.isSelected())  ;
 		Data.replace(oJob, nJob);
 		cancel();
 	}
@@ -211,7 +224,7 @@ public class EditJobsController {
 	
 	public void selectEnter() {
 		System.out.println("Selected = "+getSelected());
-		EditJobsController.matMatch.add(getSelected()+"\n"+amount.getText().trim());
+		EditCompletedJobController.matMatch.add(getSelected()+"\n"+amount.getText().trim());
 		System.out.println("Adding "+amount.getText().trim()+" "+JobCreateController.selected);
 
 		JobCreateController.sMaterialArray.add(getSelected()+" - "+amount.getText().trim());
@@ -263,9 +276,13 @@ public class EditJobsController {
 		laborCost.setText(Double.toString(oLaborCost));
 		jobName.setText(oJobName);
 		fenceStyle.setText(oFenceStyle);
+		matCost.setText(oMatCost);
+		amntCharged.setText(oAmntCharged);
+		endDate.setValue(oEndDate);
 		if(oIsRepair) {
-			repair.setSelected(true);;
+			repair.setSelected(true);
 		}
+		
 		isInitalized=true;
 	}
 	
@@ -314,6 +331,10 @@ public class EditJobsController {
 		oCrew=new Crew();
 		oAd=new Ad();
 		oCust=new Customer();
+		nJob=new Job();
+		oMatCost="";
+		oAmntCharged="";
+		oEndDate=LocalDate.MIN;
 		oIsRepair=false;
 	}
 	public void autoFill() {
@@ -351,7 +372,13 @@ public class EditJobsController {
 		oCrew=job.getCrew();
 		oAd=job.getAd();
 		oCust=job.getCustomer();
+		
+		oMatCost=Double.toString(job.getTotalMatCost());
+		oAmntCharged=Double.toString(job.getAmntCharged());
+		oEndDate=job.getDateCompleted();
 		oIsRepair=job.isRepair();
+		
+		
 		
 	}
 	public ArrayList<String> toSMaterialArray(ArrayList<Material> l, ArrayList<Integer> amnt) {

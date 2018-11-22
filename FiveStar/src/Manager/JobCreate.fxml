@@ -48,7 +48,7 @@
                <children>
                   <TextField fx:id="quote" promptText="Quote" GridPane.rowIndex="3" />
                   <TextField fx:id="footage" promptText="Footage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Repair" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <CheckBox fx:id="repair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Repair" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <DatePicker fx:id="date" promptText="Date" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <TextField fx:id="street" promptText="Street" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <TextField fx:id="city" promptText="City" GridPane.columnIndex="3" GridPane.rowIndex="3" />

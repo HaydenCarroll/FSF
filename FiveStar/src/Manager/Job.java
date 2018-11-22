@@ -39,8 +39,10 @@ public class Job implements Serializable{
 	private String sCrew;
 	private double totalMatCost;
 	private double amntCharged;
+	private boolean isRepair;
 	
-	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost, LocalDate date,Customer customer, String jobName, String fenceName) {
+	public Job(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost,
+			LocalDate date,Customer customer, String jobName, String fenceName, boolean isRepair) {
 		this.jobID=Data.getNextJobID();
 		this.ad=ad;
 		this.ad.updateAdUse();
@@ -63,12 +65,72 @@ public class Job implements Serializable{
 		this.setTotalMatCost(getTotalMatCost());
 		this.dateCompleted=null;
 		this.completed=false;
-		this.laborCost=0;
 		this.profit=0;
 		this.sDateCompleted=null;
 		this.totalMatCost=0;
 		this.amntCharged=0;
+		this.isRepair=isRepair;
+	}
+	public Job() {
 		
+	}
+	
+	public void setJob(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address, double laborCost,
+			LocalDate date,Customer customer, String jobName, String fenceName, boolean isRepair) {
+		this.ad=ad;
+		this.setMatUnit(matUnit);
+		this.crew=crew;
+		this.setMatList(matList);
+		this.quote=quote;
+		this.footage=footage;
+		this.address=address;
+		this.laborCost=laborCost;
+		this.date=date;
+		this.customer=customer;
+		this.setName(jobName);
+		this.setCusName(customer.getName());
+		this.setSDate(date.toString());
+		this.setCityName(address.getCity());
+		this.setFenceName(fenceName);
+		this.setSAd(ad.getName());
+		this.setSCrew(crew.getName());
+		this.setTotalMatCost(getTotalMatCost());
+		this.dateCompleted=null;
+		this.completed=false;
+		this.profit=0;
+		this.sDateCompleted=null;
+		this.totalMatCost=0;
+		this.amntCharged=0;
+		this.isRepair=isRepair;
+		
+	}
+	
+	public void setCompletedJob(Ad ad, Crew crew, ArrayList<Material> matList,ArrayList<Integer> matUnit, double quote, double footage, Address address,
+			double laborCost, LocalDate date,Customer customer, String jobName, String fenceName,LocalDate dateCompleted, double matCost, double charged, boolean isRepair) {
+		this.ad=ad;
+		this.setMatUnit(matUnit);
+		this.crew=crew;
+		this.setMatList(matList);
+		this.quote=quote;
+		this.footage=footage;
+		this.address=address;
+		this.laborCost=laborCost;
+		this.date=date;
+		this.customer=customer;
+		this.setName(jobName);
+		this.setCusName(customer.getName());
+		this.setSDate(date.toString());
+		this.setCityName(address.getCity());
+		this.setFenceName(fenceName);
+		this.setSAd(ad.getName());
+		this.setSCrew(crew.getName());
+		this.setTotalMatCost(getTotalMatCost());
+		this.dateCompleted=dateCompleted;
+		this.sDateCompleted=dateCompleted.toString();
+		this.totalMatCost=matCost;
+		this.amntCharged=charged;
+		this.profit=charged-(laborCost+matCost);
+		this.isRepair=isRepair;
 	}
 	
 	public void endJob(LocalDate date, double labor, double matCost, double charged) {
@@ -256,6 +318,12 @@ public class Job implements Serializable{
 
 	public void setAmntCharged(double amntCharged) {
 		this.amntCharged = amntCharged;
+	}
+	public boolean isRepair() {
+		return isRepair;
+	}
+	public void setRepair(boolean isRepair) {
+		this.isRepair = isRepair;
 	}
 	
 	

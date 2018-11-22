@@ -21,13 +21,6 @@ public class Material implements Serializable{
 	private double totalAmtSold;
 	
 	public Material(){
-		this.materialID=Data.getNextMaterialID();
-		this.name = "<Default name>";
-		this.setPricePF(0);
-		this.costPU = 0;
-		this.totalAmtSpent = 0;
-		this.totalFootage = 0;
-		this.totalAmtSold = 0;
 	}
 	
 	public Material(String name, double costPU, double pricePF){

@@ -197,8 +197,20 @@ public class ManageController {
 	
 	
 	public void openEditJobs() {
-		EditJobsController editJobs = new EditJobsController();
-		editJobs.newJob();
+		Job j = jobsTable.getSelectionModel().getSelectedItem();
+		System.out.println(j.getName());
+		if(!j.isCompleted()) {
+			EditJobsController editJobs = new EditJobsController();
+			editJobs.sendInfo(j);
+			editJobs.editJob();
+			editJobs=null;
+		}else {
+			EditCompletedJobController editJobs = new EditCompletedJobController();
+			editJobs.sendInfo(j);
+			editJobs.editJob();
+			editJobs=null;
+		}
+		
 	}
 	
 	public void newJob() {
@@ -209,7 +221,9 @@ public class ManageController {
 	
 	public void openEditCustomers() {
 		EditCustomersController editCustomers = new EditCustomersController();
+		editCustomers.sendData(custTable.getSelectionModel().getSelectedItem());
 		editCustomers.editCustomer();
+		editCustomers=null;
 	}
 	
 	public void openCreateCustomers() {
