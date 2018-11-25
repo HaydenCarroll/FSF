@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager.CreateCrewsController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <center>
@@ -33,7 +33,7 @@
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Crew Name:" />
-                              <TextField />
+                              <TextField fx:id="name" />
                            </children>
                         </HBox>
                      </children>
@@ -47,11 +47,15 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Number Of Jobs:" />
+                              <TextField fx:id="numJobs" />
+                           </children></HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Cancel" />
-                              <Button mnemonicParsing="false" text="Enter" />
+                              <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                              <Button mnemonicParsing="false" onAction="#enter" text="Enter" />
                            </children>
                         </HBox>
                      </children>
