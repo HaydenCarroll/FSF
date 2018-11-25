@@ -129,7 +129,8 @@ public class Ad implements Serializable{
 		this.value = Data.getAdValue(this);
 	}
 
-	public String getsLocation() {
+	public String getSLocation() {
+		updateSLocation();
 		return sLocation;
 	}
 
@@ -137,17 +138,23 @@ public class Ad implements Serializable{
 		this.sLocation = sLocation;
 	}
 	
-	public String updateSLocation() {
+	public void updateSLocation() {
 		String s = "";
 		for (int i=0;i<location.size();i++) {
+			
 			if(location.size()-i==1) {
 				System.out.println("adding "+location.get(i));
 				s+=location.get(i);
+			}else {
+				System.out.println("adding "+location.get(i)+", ");
+				s+=location.get(i)+", ";
 			}
-			System.out.println("adding "+location.get(i)+", ");
-			s+=location.get(i)+" ,";
+			if(i!=0&&i%4==0) {
+				s+="\n";
+			}
+			
 		}
-		return s;
+		this.sLocation= s;
 	}
 	
 	

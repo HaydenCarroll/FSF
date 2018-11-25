@@ -76,6 +76,9 @@ public class Customer implements Serializable{
 	public void setNumOfJobs(int numOfJobs) {
 		this.numOfJobs = numOfJobs;
 	}
+	public void updateNumOfJobs() {
+		this.numOfJobs = Data.getJobListByCustomer(this).size();
+	}
 	/*public String getBillingAddress() {
 		return billingAddress;
 	}

@@ -313,7 +313,7 @@
                                   <TableColumn fx:id="matPrice" editable="false" prefWidth="75.0" text="Price Per Foot (Sell Price)" />
                                     <TableColumn fx:id="matCost" editable="false" prefWidth="75.0" text="Cost Per Unit" />
                                     <TableColumn fx:id="matSpent" editable="false" prefWidth="75.0" text="Total Amount Spent" />
-                                    <TableColumn fx:id="matUsed" editable="false" prefWidth="75.0" text="Total Footage Used" />
+                                    <TableColumn fx:id="matUsed" editable="false" prefWidth="75.0" text="Total Amount Used" />
                                     <TableColumn fx:id="matSold" editable="false" prefWidth="75.0" text="Total Amount Sold" />
                                 </columns>
                                  <columnResizePolicy>

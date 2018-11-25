@@ -1,7 +1,7 @@
 package Manager;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 //(Andres G) this class should have the crew name, crew id, how many jobs they have done, and a list of jobs that they have worked on
 //make a method that updates the number of jobs they have done (ex. updateJobNum() that just makes job number = job number+1)
@@ -15,7 +15,7 @@ public class Crew implements Serializable{
 	private int crewID;
 	private String name;
 	private int numOfJobs;
-	private LinkedList<Job> jobList;
+	private ArrayList<Job> jobList;
 	private String sJobsList;
 	
 	public Crew() {
@@ -25,7 +25,7 @@ public class Crew implements Serializable{
 		this.crewID=Data.getNextCrewID();
 		this.name=name;
 		this.numOfJobs=0;
-		this.jobList=new LinkedList<Job>();
+		this.jobList=new ArrayList<Job>();
 		this.sJobsList="";
 		
 	}
@@ -35,7 +35,7 @@ public class Crew implements Serializable{
 		this.crewID=Data.getNextCrewID();
 		this.name=name;
 		this.numOfJobs=numOfJobs;
-		this.jobList=new LinkedList<Job>();
+		this.jobList=new ArrayList<Job>();
 		this.sJobsList="";
 	}
 	
@@ -55,7 +55,10 @@ public class Crew implements Serializable{
 	public void populateSJobsList() {
 		sJobsList="";
 		for(int i=0;i<jobList.size();i++) {
-			sJobsList+=jobList.get(i).getName();
+			if(i!=0&&i%3==0) {
+				sJobsList+="\n";
+			}
+			sJobsList+=jobList.get(i).getName()+", ";
 		}
 	}
 	public int getCrewID() {
@@ -76,13 +79,20 @@ public class Crew implements Serializable{
 	public void setNumOfJobs(int numOfJobs) {
 		this.numOfJobs = numOfJobs;
 	}
-	public LinkedList<Job> getJobList() {
+	public ArrayList<Job> getJobList() {
 		return jobList;
 	}
-	public void setJobList(LinkedList<Job> jobList) {
+	public void setJobList(ArrayList<Job> jobList) {
 		this.jobList = jobList;
 	}
 	
+	public void updateJobList() {
+		this.jobList=Data.getJobListByCrew(this);
+	}
+	public String getSJobsList() {
+		populateSJobsList();
+		return this.sJobsList;
+	}
 	public String toString() {
 		return this.name;
 	}

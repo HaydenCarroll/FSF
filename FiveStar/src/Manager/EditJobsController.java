@@ -164,6 +164,7 @@ public class EditJobsController {
 		}
 		match(material);
 		Customer cust = Data.findCustomer(customerSelector.getValue());
+		nJob.setJobID(oJob.getJobID());
 		nJob.setJob(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
 				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText(),repair.isSelected())  ;
 		Data.replace(oJob, nJob);

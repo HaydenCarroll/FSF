@@ -81,4 +81,11 @@ public class BaseController {
 		
 	}
 	
+	public void genQuote() {
+		FSF f = new FSF();
+		f.sendData(jobsTable.getSelectionModel().getSelectedItem());
+		f.editJob();
+		f=null;
+	}
+	
 }

@@ -158,7 +158,7 @@ public class ManageController {
 					new PropertyValueFactory<Ad, Integer>("numberOfUses"));
 
 			adLocation.setCellValueFactory(
-					new PropertyValueFactory<Ad, String>("location"));
+					new PropertyValueFactory<Ad, String>("sLocation"));
 
 			adCost.setCellValueFactory(
 					new PropertyValueFactory<Ad, Double>("adCost"));

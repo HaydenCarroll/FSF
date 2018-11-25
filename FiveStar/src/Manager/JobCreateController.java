@@ -139,6 +139,10 @@ public class JobCreateController{
 				cust, jobName.getText(),fenceStyle.getText(),
 				repair.isSelected())  ;
 		Data.updateJobList(job);
+		if(!job.getCustomer().getRefrence().equals(ad.getName())) {
+			ad.updateAdUse();
+			Data.replace(ad, ad);
+		}
 		try {
 			Data.updateDataFile();
 		} catch (IOException e) {
@@ -250,8 +254,12 @@ public class JobCreateController{
 	}
 	public void autoFill() {
 		if(customerSelector.getSelectionModel().getSelectedItem()!=null&&this.isFilled==false) {
+			
 			String name =customerSelector.getSelectionModel().getSelectedItem();
 			Customer c = Data.findCustomer(name);
+			if(!c.getRefrence().equals("")) {
+				this.adSelector.setValue(c.getRefrence());
+			}
 			Address a = c.getAddress();
 			this.state.setText(a.getState());
 			this.street.setText(a.getStreet());

@@ -5,6 +5,8 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.swing.JList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -323,6 +325,16 @@ public class Data implements Serializable{
 		jobList.add(job);
 	}
 	
+	/*public static int getJobId(Job job) {
+		int id=-1;
+		ArrayList<Job> list= Data.getJobList();
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i).getName().equals(job.getName())) {
+				id=i;
+			}
+		}
+	}*/
+	
 
 	public static ArrayList<Customer> getCustomerList() {
 		return customerList;
@@ -370,10 +382,10 @@ public class Data implements Serializable{
 	
 	
 	public static int getNextJobID() {
-		if(Data.getJobList().isEmpty()) {
+		if(Data.getJobList().size()==0) {
 			return 0;
 		}
-		return Data.getJobList().size();
+		return Data.getJobList().get(Data.getJobList().size()-1).getJobID()+1;
 	}
 	
 	public static int getNextCustomerID() {
@@ -451,7 +463,7 @@ public class Data implements Serializable{
 	public static double getAdValue(Ad ad) {
 		double value = 0;
 		for(int i=0; i<jobList.size();i++) {
-			if(jobList.get(i).getAd().equals(ad)) {
+			if(jobList.get(i).getAd().getName().equals(ad.getName())) {
 				value+=jobList.get(i).getProfit();
 			}
 		}
@@ -555,6 +567,47 @@ public class Data implements Serializable{
 			}
 		}
 		return list;
+	}
+	
+	public static ArrayList<Job> getJobListByCrew(Crew c) {
+		ArrayList<Job> list = new ArrayList<Job>();
+		ArrayList<Job> jList = Data.getJobList();
+		for(int i=0;i<jList.size();i++) {
+			if(jList.get(i).getCrew().getName().equals(c.getName())) {
+				list.add(jList.get(i));
+			}
+		}
+		return list;
+	}
+	public static void updateMaterial(Material m) {
+		Material newM = m;
+		ArrayList<Job> jList = Data.getJobList();
+		double cost=m.getCostPU();
+		double price=m.getPricePF();
+		double amntUsed=0;
+		double amntSold=0;
+		double amntSpent=0;
+		
+		for(int i=0;i<jList.size();i++) {
+			Job job = jList.get(i);
+			ArrayList<Material> mList = job.getMatList();
+			ArrayList<Integer> uList = job.getMatUnit();
+			for(int j=0;j<mList.size();j++) {
+				if(mList.get(j).getName().equals(newM.getName())) {
+					amntUsed+=uList.get(j);
+				}
+			}
+		}
+		
+		amntSpent=amntUsed*cost;
+		amntSold=amntUsed*price;
+		
+		m.setTotalAmtSold(amntSold);
+		m.setTotalFootage(amntUsed);
+		m.setTotalAmtSpent(amntSpent);
+		
+		Data.replace(m, newM);
+		
 	}
 	
 	public static Job getEarliestJob(ArrayList<Job> list) {

@@ -66,6 +66,9 @@ public class CreateCustomersController {
 			
 			if(Data.findAd(refrence.getSelectionModel().getSelectedItem())!=null) {
 				ref=Data.findAd(refrence.getSelectionModel().getSelectedItem()).getName();
+				Ad ad = Data.findAd(refrence.getSelectionModel().getSelectedItem());
+				ad.updateAdUse();
+				Data.replace(ad, ad);
 			}
 			else {
 				ref=Data.findCustomer(refrence.getSelectionModel().getSelectedItem()).getName();

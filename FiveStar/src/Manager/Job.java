@@ -131,6 +131,7 @@ public class Job implements Serializable{
 		this.amntCharged=charged;
 		this.profit=charged-(laborCost+matCost);
 		this.isRepair=isRepair;
+		this.completed=true;
 	}
 	
 	public void endJob(LocalDate date, double labor, double matCost, double charged) {
@@ -141,6 +142,17 @@ public class Job implements Serializable{
 		this.sDateCompleted=date.toString();
 		this.completed=true;
 		this.profit=charged-(labor+matCost);
+		
+		
+		this.ad.updateValue();
+		
+		this.customer.updateNumOfJobs();
+		
+		this.crew.updateJobList();
+		
+		for(int i=0;i<this.matList.size();i++) {
+			Data.updateMaterial(this.matList.get(i));
+		}
 		
 	}
 	
@@ -158,9 +170,9 @@ public class Job implements Serializable{
 	public int getJobID() {
 		return jobID;
 	}
-	/*public void setJobID(int jobID) {
+	public void setJobID(int jobID) {
 		this.jobID = jobID;
-	}*/
+	}
 	
 	public Customer getCustomer() {
 		return customer;
@@ -326,7 +338,12 @@ public class Job implements Serializable{
 		this.isRepair = isRepair;
 	}
 	
+	public double getSpending() {
+		return this.totalMatCost+this.laborCost;
+	}
 	
-	
+	public String toString() {
+		return this.name;
+	}
 
 }

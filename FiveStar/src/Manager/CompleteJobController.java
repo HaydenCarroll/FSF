@@ -128,7 +128,7 @@ public class CompleteJobController {
 		nJob=new Job();
 		oMatCost="";
 		oAmntCharged="";
-		oEndDate=LocalDate.MIN;
+		oEndDate=LocalDate.now();
 		oIsRepair=false;
 	}
 	
@@ -176,6 +176,7 @@ public class CompleteJobController {
 		}
 		match(material);
 		Customer cust = Data.findCustomer(customerSelector.getValue());
+		nJob.setJobID(oJob.getJobID());
 		nJob.setCompletedJob(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
 				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText()
 				,endDate.getValue(),Double.parseDouble(matCost.getText()),Double.parseDouble(amntCharged.getText()),repair.isSelected())  ;

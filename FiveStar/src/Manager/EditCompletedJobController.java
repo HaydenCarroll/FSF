@@ -138,7 +138,7 @@ public class EditCompletedJobController {
 			
 			
 			
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("EditJobs.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("EditCompletedJob.fxml"));
 			Scene scene = new Scene(root,800,400);
 			jobEditStage.setTitle("Edit Job");
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -176,6 +176,7 @@ public class EditCompletedJobController {
 		}
 		match(material);
 		Customer cust = Data.findCustomer(customerSelector.getValue());
+		nJob.setJobID(oJob.getJobID());
 		nJob.setCompletedJob(ad,crew,material,matAmount,Double.parseDouble(quote.getText()),
 				Double.parseDouble(footage.getText()),address,Double.parseDouble(laborCost.getText()),date.getValue(), cust, jobName.getText(),fenceStyle.getText()
 				,endDate.getValue(),Double.parseDouble(matCost.getText()),Double.parseDouble(amntCharged.getText()),repair.isSelected())  ;
