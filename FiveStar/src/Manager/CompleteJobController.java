@@ -117,7 +117,7 @@ public class CompleteJobController {
 		oCity="";
 		oState="";
 		oZipCode=-1;
-		oDate=LocalDate.MIN;
+		oDate=LocalDate.now();
 		oLaborCost=-1;
 		oJobName="";
 		oFenceStyle="";
