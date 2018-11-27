@@ -57,6 +57,10 @@ public class DataViewController {
 	public NumberAxis yAxisProfitAd;
 	public NumberAxis xAxisSpendingAd;
 	public NumberAxis yAxisSpendingAd;
+	public Label MSAD;
+	public Label MVAD;
+	public Label LSAD;
+	public Label LVAD;
 	
 	public LineChart<Number,Number> customerProfitChart;
 	public LineChart<Number,Number> customerSpendingChart;
@@ -113,101 +117,7 @@ public class DataViewController {
 		spacingMaterial.setItems(DMY);
 	}
 	
-	/*public void newTab() {
-		
-		Tab tab = new Tab();
-		int tabNum = tabPane.getTabs().size()-1;
-		tab.setText("   Tab "+tabNum+"   ");
-		tab.setClosable(true);
-		tabPane.getTabs().add(tab);
-		AnchorPane a = new AnchorPane();
-		tab.setContent(a);
-		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-		selectionModel.select(tab);
-		tabs.add(tab);
-		tab.setOnClosed(e->{
-			System.out.println("removing "+tab.getText());
-			tabs.remove(tab);
-		});
-		
-		
-	}*/
 	
-	/*public void newGraph() {
-		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("NewGraph.fxml"));
-			Scene scene = new Scene(root,800,600);
-			dataStage.setTitle("New Graph");
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			dataStage.setScene(scene);
-			dataStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void initGraph() {
-		category.setItems(CATEGORIES);
-		profitOrSpending.setItems(POS);
-		spacing.setItems(DMY);
-	}*/
-	
-	
-	
-	/*private static final ObservableList<String> PROFIT = FXCollections.observableArrayList("Overall Profit","Job","Ad","Crew","Customer");
-	private static final ObservableList<String> SPENDATURE = FXCollections.observableArrayList("Overall Spending","Job","Ad","Crew","Customer");*/
-	
-	/*public void generateGraph() {
-		
-		String cat = category.getValue();
-		String proSpen = profitOrSpending.getValue();
-		switch (proSpen) {
-		case "Profit":
-			
-			switch(cat) {
-			case "Job":
-				
-				break;
-				
-			case "Ad":
-				break;
-				
-			case "Crew":
-				break;
-				
-			case "Customer":
-				break;
-				
-			case "Materials":
-				break;
-				
-			}
-			
-			break;
-		
-		case "Spendature":
-			
-			switch(cat) {
-			case "Job":
-				
-				break;
-				
-			case "Ad":
-				break;
-				
-			case "Crew":
-				break;
-				
-			case "Customer":
-				break;
-				
-			case "Materials":
-				break;
-				
-			}
-			break;
-		}
-	}*/
 	
 	public void getJobCharts() {
 		LocalDate s = startJob.getValue();
@@ -286,6 +196,7 @@ public class DataViewController {
 		profitSeries.setName("Ads");
 		spendingSeries.setName("Ads");
 		ArrayList<Job> list = Data.getJobByDate(s, e);
+		ArrayList<Ad> adList = new ArrayList<Ad>();
 		int start = -1;
 		int end = -1;
 		switch (dmy) {
@@ -296,6 +207,7 @@ public class DataViewController {
 			xAxisProfitAd.setLabel("Day Of Year");
 			for(int i=0;i<list.size();i++) {
 				Ad ad = list.get(i).getAd();
+				adList.add(ad);
 				int comp = list.get(i).getDateCompleted().getDayOfYear();
 				double prof = ad.getValue();
 				double spend = ad.getAdCost();
@@ -311,6 +223,7 @@ public class DataViewController {
 			xAxisProfitAd.setLabel("Number Of Month");
 			for(int i=0;i<list.size();i++) {
 				Ad ad = list.get(i).getAd();
+				adList.add(ad);
 				int comp = list.get(i).getDateCompleted().getMonthValue();
 				double prof = ad.getValue();
 				double spend = ad.getAdCost();
@@ -326,6 +239,7 @@ public class DataViewController {
 			xAxisProfitAd.setLabel("Year");
 			for(int i=0;i<list.size();i++) {
 				Ad ad = list.get(i).getAd();
+				adList.add(ad);
 				int comp = list.get(i).getDateCompleted().getYear();
 				double prof = ad.getValue();
 				double spend = ad.getAdCost();
@@ -336,6 +250,11 @@ public class DataViewController {
 		}
 		adSpendingChart.getData().add(spendingSeries);
 		adProfitChart.getData().add(profitSeries);
+		MSAD.setText(Data.getMostSeenAd(adList).getName());
+		MVAD.setText(Data.getMostValueAd(adList).getName());
+		LSAD.setText(Data.getLeastSeenAd(adList).getName());
+		LVAD.setText(Data.getLeastValueAd(adList).getName());
+		
 		
 	}
 	

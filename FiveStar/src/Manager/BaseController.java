@@ -50,7 +50,7 @@ public class BaseController {
 	
 	public void jobsTab(){
 		try {
-		ObservableList<Job> jobList = Data.getCurrentJobObservableList();
+		ObservableList<Job> jobList = Data.getJobObservableList();
 		saleNo.setCellValueFactory(
 				new PropertyValueFactory<Job, Integer>("jobID"));
 		date.setCellValueFactory(
