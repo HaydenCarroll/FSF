@@ -18,10 +18,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 //make sure to use generics to make sure that the lists can't be accessed in an improper manner
 //this class will also do the calculations and other math operations, but we can talk more on what all that will be later.
 
+/**
+ * @author Hayden, Jimmy
+ *
+ */
 public class Data implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2L;
 	private static ArrayList<Job> jobList;
 	private static ArrayList<Customer> customerList;
@@ -32,6 +34,9 @@ public class Data implements Serializable{
 	private static ArrayList<Goal> goalList;
 	private static Object temp;
 	
+	/**
+	 * 
+	 */
 	public Data() {
 		Data.jobList = new ArrayList<Job>();
 		Data.customerList = new ArrayList<Customer>();
@@ -48,6 +53,14 @@ public class Data implements Serializable{
 		materialList.clear();
 		
 	}
+	/**
+	 * @param jobList
+	 * @param customerList
+	 * @param crewList
+	 * @param addressList
+	 * @param adList
+	 * @param materialList
+	 */
 	public Data(ArrayList<Job> jobList, ArrayList<Customer> customerList, ArrayList<Crew> crewList, ArrayList<Address> addressList, ArrayList<Ad> adList, ArrayList<Material> materialList) {
 		Data.jobList = jobList;
 		Data.customerList = customerList;
@@ -58,30 +71,51 @@ public class Data implements Serializable{
 	}
 	
 	
+	/**
+	 * @param jobList
+	 */
 	public static void setJobList(ArrayList<Job> jobList) {
 		Data.jobList=jobList;
 	}
 	
+	/**
+	 * @param customerList
+	 */
 	public static void setCustomerList(ArrayList<Customer> customerList) {
 		Data.customerList=customerList;
 	}
 	
+	/**
+	 * @param crewList
+	 */
 	public static void setCrewList(ArrayList<Crew> crewList) {
 		Data.crewList=crewList;
 	}
 	
+	/**
+	 * @param addressList
+	 */
 	public static void setAddressList(ArrayList<Address> addressList) {
 		Data.addressList=addressList;
 	}
 	
+	/**
+	 * @param adList
+	 */
 	public static void setAdList(ArrayList<Ad> adList) {
 		Data.adList=adList;
 	}
 	
+	/**
+	 * @param materialList
+	 */
 	public static void setMaterialList(ArrayList<Material> materialList) {
 		Data.materialList=materialList;
 	}
 	
+	/**
+	 * 
+	 */
 	@SuppressWarnings({ "static-access", "unchecked" })
 	static void initalizeData() {
 		try {
@@ -147,30 +181,14 @@ public class Data implements Serializable{
 		}
 		
 	}
-	//not used
-	/*private Data getData() {
-		Data data = new Data();
-		try {
-			FileInputStream in = new FileInputStream("data.dat");
-			ObjectInputStream oIn = new ObjectInputStream(in);
-			oIn.close();
-			data= (Data) oIn.readObject();
-			
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return data;
-	}*/
+
+	/**
+	 * @throws IOException
+	 */
 	public static void createDataFile() throws IOException{
 		try {
 				File file = new File("data.dat");
-				/*File jobFile = new File("job.dat");
-				File custFile = new File("job.dat");
-				File crewFile = new File("job.dat");
-				File addressFile = new File("job.dat");
-				File adFile = new File("job.dat");
-				File matFile = new File("job.dat");*/
+
 				FileOutputStream dataFile = new FileOutputStream(file);
 				FileOutputStream jobFile = new FileOutputStream("job.dat");
 				FileOutputStream custFile = new FileOutputStream("cust.dat");
@@ -212,6 +230,9 @@ public class Data implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @throws IOException
+	 */
 	public static void updateDataFile() throws IOException{
 		try {
 			File file = new File("data.dat");
@@ -259,29 +280,20 @@ public class Data implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	//for testing purposes
-	/*public static void testFile() {
-		try {
-			FileInputStream dataFile = new FileInputStream("data.dat");
-			Ad test = new Ad();
-			updateAdList(test);
-			updateDataFile();
-			ObjectInputStream input = new ObjectInputStream(dataFile);
-			Data testData = (Data)input.readObject();
-			System.out.println(testData.getAdList().get(0).getName());
-			input.close();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
+
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<Job> getJobObservableList(){
 		ObservableList<Job> jobList = FXCollections.observableArrayList();
 		jobList.addAll(Data.getJobList());
 		return jobList;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<Job> getCurrentJobObservableList(){
 		ObservableList<Job> jobList = FXCollections.observableArrayList();
 		jobList.addAll(Data.getJobList());
@@ -293,94 +305,137 @@ public class Data implements Serializable{
 		return jobList;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<Customer> getCustomerObservableList(){
 		ObservableList<Customer> customerList = FXCollections.observableArrayList();
 		customerList.addAll(Data.getCustomerList());
 		return customerList;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<Crew> getCrewObservableList(){
 		ObservableList<Crew> crewList = FXCollections.observableArrayList();
 		crewList.addAll(Data.getCrewList());
 		return crewList;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<Material> getMaterialObservableList(){
 		ObservableList<Material> materialList = FXCollections.observableArrayList();
 		materialList.addAll(Data.getMaterialList());
 		return materialList;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<Ad> getAdObservableList(){
 		ObservableList<Ad> adList = FXCollections.observableArrayList();
 		adList.addAll(Data.getAdList());
 		return adList;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ArrayList<Job> getJobList() {
 		return jobList;
 	}
 
+	/**
+	 * @param job
+	 */
 	public static void updateJobList(Job job) {
 		jobList.add(job);
 	}
 	
-	/*public static int getJobId(Job job) {
-		int id=-1;
-		ArrayList<Job> list= Data.getJobList();
-		for(int i=0;i<list.size();i++) {
-			if(list.get(i).getName().equals(job.getName())) {
-				id=i;
-			}
-		}
-	}*/
+
 	
 
+	/**
+	 * @return
+	 */
 	public static ArrayList<Customer> getCustomerList() {
 		return customerList;
 	}
 
+	/**
+	 * @param customer
+	 */
 	public static void updateCustomerList(Customer customer) {
 		customerList.add(customer);
 	}
 	
 
+	/**
+	 * @return
+	 */
 	public static ArrayList<Crew> getCrewList() {
 		return crewList;
 	}
 
+	/**
+	 * @param crew
+	 */
 	public static void updateCrewList(Crew crew) {
 		crewList.add(crew);
 	}
 	
 
+	/**
+	 * @return
+	 */
 	public static ArrayList<Address> getAddressList() {
 		return addressList;
 	}
 
+	/**
+	 * @param address
+	 */
 	public static void updateAddressList(Address address) {
 		addressList.add(address);
 	}
 	
 
+	/**
+	 * @return
+	 */
 	public static ArrayList<Ad> getAdList() {
 		return adList;
 	}
 
+	/**
+	 * @param ad
+	 */
 	public static void updateAdList(Ad ad) {
 		adList.add(ad);
 	}
 	
 
+	/**
+	 * @return
+	 */
 	public static ArrayList<Material> getMaterialList() {
 		return Data.materialList;
 	}
 
+	/**
+	 * @param material
+	 */
 	public static void updateMaterialList(Material material) {
 		materialList.add(material);
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	public static int getNextJobID() {
 		if(Data.getJobList().size()==0) {
 			return 0;
@@ -388,6 +443,9 @@ public class Data implements Serializable{
 		return Data.getJobList().get(Data.getJobList().size()-1).getJobID()+1;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static int getNextCustomerID() {
 		if(Data.getCustomerList().isEmpty()) {
 			return 0;
@@ -396,6 +454,9 @@ public class Data implements Serializable{
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public static int getNextCrewID() {
 		if(Data.getCrewList().isEmpty()) {
 			return 0;
@@ -403,6 +464,9 @@ public class Data implements Serializable{
 		return Data.getCrewList().size();
 	}
 	
+	/**
+	 * @return
+	 */
 	public static int getNextAddressID() {
 		if(Data.getAddressList().isEmpty()){
 			return 0;
@@ -410,6 +474,9 @@ public class Data implements Serializable{
 		return Data.getAddressList().size();
 	}
 	
+	/**
+	 * @return
+	 */
 	public static int getNextAdID() {
 		if(Data.getAdList().isEmpty()) {
 			return 0;
@@ -417,6 +484,9 @@ public class Data implements Serializable{
 		return Data.getAdList().size();
 	}
 	
+	/**
+	 * @return
+	 */
 	public static int getNextMaterialID() {
 		if(Data.getMaterialList().isEmpty()) {
 			return 0;
@@ -424,6 +494,10 @@ public class Data implements Serializable{
 		return Data.getMaterialList().size();
 	}
 
+	/**
+	 * @param ads
+	 * @return
+	 */
 	public static Ad getMostSeenAd(ArrayList<Ad> ads) {
 		int maxUses = ads.get(0).getNumberOfUses();
 		Ad bestAd = ads.get(0);
@@ -436,6 +510,10 @@ public class Data implements Serializable{
 		return bestAd;
 	}
 	
+	/**
+	 * @param ads
+	 * @return
+	 */
 	public static Ad getMostValueAd(ArrayList<Ad> ads) {
 		Ad bestAd = ads.get(0);
 		double value = ads.get(0).getNumberOfUses() / ads.get(0).getAdCost();
@@ -448,6 +526,10 @@ public class Data implements Serializable{
 		return bestAd;
 	}
 	
+	/**
+	 * @param ads
+	 * @return
+	 */
 	public static Ad getMostSoldAd(ArrayList<Ad> ads) {
 		Ad bestAd = ads.get(0);
 		double value = ads.get(0).getAmtSold() / ads.get(0).getAdCost();
@@ -460,6 +542,10 @@ public class Data implements Serializable{
 		return bestAd;
 	}
 	
+	/**
+	 * @param ad
+	 * @return
+	 */
 	public static double getAdValue(Ad ad) {
 		double value = 0;
 		for(int i=0; i<jobList.size();i++) {
@@ -470,6 +556,10 @@ public class Data implements Serializable{
 		return value;
 	}
 		
+	/**
+	 * @param ads
+	 * @return
+	 */
 	public static Ad getLeastSeenAd(ArrayList<Ad> ads) {
 		int minUses = ads.get(0).getNumberOfUses();
 		Ad worstAd = ads.get(0);
@@ -482,6 +572,10 @@ public class Data implements Serializable{
 		return worstAd;
 	}
 	
+	/**
+	 * @param ads
+	 * @return
+	 */
 	public static Ad getLeastValueAd(ArrayList<Ad> ads) {
 		Ad worstAd = ads.get(0);
 		double value = ads.get(0).getNumberOfUses() / ads.get(0).getAdCost();
@@ -494,6 +588,10 @@ public class Data implements Serializable{
 		return worstAd;
 	}
 	
+	/**
+	 * @param ads
+	 * @return
+	 */
 	public static Ad getLeastSoldAd(ArrayList<Ad> ads) {
 		Ad worstAd = ads.get(0);
 		double value = ads.get(0).getAmtSold() / ads.get(0).getAdCost();
@@ -506,6 +604,10 @@ public class Data implements Serializable{
 		return worstAd;
 	}
 	
+	/**
+	 * @param jobs
+	 * @return
+	 */
 	public static Job getMostlaborJob(ArrayList<Job> jobs) {
 		Job mostLabor = jobs.get(0);
 		double maxLabor = jobs.get(0).getLaborCost();
@@ -518,6 +620,10 @@ public class Data implements Serializable{
 		return mostLabor;
 	}
 	
+	/**
+	 * @param jobs
+	 * @return
+	 */
 	public static Job getMinlaborJob(ArrayList<Job> jobs) {
 		Job leastLabor = jobs.get(0);
 		double minLabor = jobs.get(0).getLaborCost();
@@ -530,6 +636,11 @@ public class Data implements Serializable{
 		return leastLabor;
 	}
 	
+	/**
+	 * @param start
+	 * @param end
+	 * @return
+	 */
 	public static ArrayList<Job> getJobByDate(LocalDate start, LocalDate end){
 		
 		ArrayList<Job> jobListByDate=new ArrayList<Job>();
@@ -542,6 +653,10 @@ public class Data implements Serializable{
 		return jobListByDate;
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static double getTotalRev(ArrayList<Job> list) {
 		double num =0;
 		for(int i=0; i<list.size();i++) {
@@ -550,6 +665,10 @@ public class Data implements Serializable{
 		return num;
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static double getTotalSpend(ArrayList<Job> list) {
 		double num =0;
 		for(int i=0; i<list.size();i++) {
@@ -558,6 +677,10 @@ public class Data implements Serializable{
 		return num;
 	}
 	
+	/**
+	 * @param c
+	 * @return
+	 */
 	public static ArrayList<Job> getJobListByCustomer(Customer c) {
 		ArrayList<Job> list = new ArrayList<Job>();
 		ArrayList<Job> jList = Data.getJobList();
@@ -569,6 +692,10 @@ public class Data implements Serializable{
 		return list;
 	}
 	
+	/**
+	 * @param c
+	 * @return
+	 */
 	public static ArrayList<Job> getJobListByCrew(Crew c) {
 		ArrayList<Job> list = new ArrayList<Job>();
 		ArrayList<Job> jList = Data.getJobList();
@@ -579,6 +706,9 @@ public class Data implements Serializable{
 		}
 		return list;
 	}
+	/**
+	 * @param m
+	 */
 	public static void updateMaterial(Material m) {
 		Material newM = m;
 		ArrayList<Job> jList = Data.getJobList();
@@ -610,6 +740,10 @@ public class Data implements Serializable{
 		
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static Job getEarliestJob(ArrayList<Job> list) {
 		if(list==null||list.size()<1) {
 			return null;
@@ -623,6 +757,10 @@ public class Data implements Serializable{
 		return j;
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static Job getLatestJob(ArrayList<Job> list) {
 		if(list==null||list.size()<1) {
 			return null;
@@ -637,16 +775,28 @@ public class Data implements Serializable{
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	public static ArrayList<Goal> getGoalList() {
 		return goalList;
 	}
+	/**
+	 * @param goalList
+	 */
 	public static void setGoalList(ArrayList<Goal> goalList) {
 		Data.goalList = goalList;
 	}
+	/**
+	 * @param goal
+	 */
 	public static void updateGoalList(Goal goal) {
 		goalList.add(goal);
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getMaterialStringList(){
 		ArrayList<String> list = new ArrayList<String>();
 		for (int i=0;i<Data.getMaterialList().size();i++) {
@@ -657,6 +807,10 @@ public class Data implements Serializable{
 		sList.addAll(list);
 		return sList;
 	}
+	/**
+	 * @param s
+	 * @return
+	 */
 	public static Material findMaterial(String s) {
 		Material mat = null;
 		for (int i=0;i<Data.getMaterialList().size();i++) {
@@ -668,6 +822,10 @@ public class Data implements Serializable{
 		}
 		return mat;
 	}
+	/**
+	 * @param s
+	 * @return
+	 */
 	public static Address findCustomerAddress(String s) {
 		Address a = null;
 		for (int i=0;i<Data.getCustomerList().size();i++) {
@@ -678,6 +836,10 @@ public class Data implements Serializable{
 		}
 		return a;
 	}
+	/**
+	 * @param ad
+	 * @return
+	 */
 	public static Ad findAd(String ad) {
 		Ad a = null;
 		for (int i=0;i<adList.size();i++) {
@@ -687,6 +849,10 @@ public class Data implements Serializable{
 		}
 		return a;
 	}
+	/**
+	 * @param s
+	 * @return
+	 */
 	public static Customer findCustomer(String s) {
 		Customer c = null;
 		for (int i=0;i<customerList.size();i++) {
@@ -697,6 +863,10 @@ public class Data implements Serializable{
 		return c;
 	}
 	
+	/**
+	 * @param s
+	 * @return
+	 */
 	public static Crew findCrew(String s) {
 		Crew c=null;
 		for(int i=0;i<crewList.size();i++) {
@@ -706,6 +876,9 @@ public class Data implements Serializable{
 		}
 		return c;
 	}
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getRefrences(){
 		ObservableList<String> list = FXCollections.observableArrayList();
 		for(int i=0; i<adList.size();i++) {
@@ -717,6 +890,9 @@ public class Data implements Serializable{
 		return list;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getAdObservableListString(){
 		ArrayList<String> sList = new ArrayList<String>();
 		for (int i=0;i<Data.getAdList().size();i++) {
@@ -727,6 +903,9 @@ public class Data implements Serializable{
 		list.addAll(sList);
 		return list;
 	}
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getCrewObservableListString(){
 		ArrayList<String> sList = new ArrayList<String>();
 		for (int i=0;i<Data.getCrewList().size();i++) {
@@ -737,6 +916,9 @@ public class Data implements Serializable{
 		list.addAll(sList);
 		return list;
 	}
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getJobObservableListString(){
 		ArrayList<String> sList = new ArrayList<String>();
 		for (int i=0;i<Data.getJobList().size();i++) {
@@ -747,6 +929,9 @@ public class Data implements Serializable{
 		list.addAll(sList);
 		return list;
 	}
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getMaterialObservableListString(){
 		ArrayList<String> sList = new ArrayList<String>();
 		for (int i=0;i<Data.getMaterialList().size();i++) {
@@ -757,6 +942,9 @@ public class Data implements Serializable{
 		list.addAll(sList);
 		return list;
 	}
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getCustomerObservableListString(){
 		ArrayList<String> sList = new ArrayList<String>();
 		for (int i=0;i<Data.getCustomerList().size();i++) {
@@ -768,6 +956,9 @@ public class Data implements Serializable{
 		return list;
 	}
 	
+	/**
+	 * @param o
+	 */
 	public static void remove(Object o) {
 		
 		switch (o.getClass().getSimpleName()) {
@@ -826,6 +1017,10 @@ public class Data implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @param o
+	 * @param n
+	 */
 	public static void replace(Object o,Object n) {
 		
 		switch (o.getClass().getSimpleName()) {
@@ -890,6 +1085,10 @@ public class Data implements Serializable{
 		}
 	}
 	
+	/**
+	 * @param o
+	 * @return
+	 */
 	public static String getName(Object o) {
 		String name = "";
 		switch (o.getClass().getSimpleName()) {

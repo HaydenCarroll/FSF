@@ -10,6 +10,11 @@ import java.util.ArrayList;
 //make a method that updates the the amount sold (ex. updateSoldAmnt(number) that equals amount sold+number)
 //make a method that updates the number of customers that used the ad (ex. DEFAULT METHOD: updateAdUse() that equals ad use+1, METHOD: updateAdUse(number) that equals ad use+number)
 //getters and setters
+
+/**
+ * @author Andres R
+ *
+ */
 public class Ad implements Serializable{
 	/**
 	 * 
@@ -24,6 +29,12 @@ public class Ad implements Serializable{
 	private int amtSold;
 	private double value;
 	
+	/**
+	 * @param name
+	 * @param adCost
+	 * @param numberOfUses
+	 * @param amtSold
+	 */
 	public Ad(String name, double adCost, int numberOfUses, int amtSold){
 		this.adID=Data.getNextAdID();
 		this.name = name;
@@ -34,6 +45,13 @@ public class Ad implements Serializable{
 		updateSLocation();
 	}
 	
+	/**
+	 * @param name
+	 * @param location
+	 * @param adCost
+	 * @param numberOfUses
+	 * @param amtSold
+	 */
 	public Ad(String name, String location, double adCost, int numberOfUses, int amtSold){
 		this.adID=Data.getNextAdID();
 		this.name = name;
@@ -44,6 +62,13 @@ public class Ad implements Serializable{
 		this.amtSold = amtSold;
 		updateSLocation();
 	}
+	/**
+	 * @param name
+	 * @param location
+	 * @param adCost
+	 * @param numberOfUses
+	 * @param value
+	 */
 	public Ad(String name, ArrayList<String> location, double adCost, int numberOfUses, double value){
 		this.adID=Data.getNextAdID();
 		this.name = name;
@@ -54,90 +79,159 @@ public class Ad implements Serializable{
 		updateSLocation();
 	}
 	
+	/**
+	 * 
+	 */
 	public Ad(){
 	
 	}
+	/**
+	 * @return
+	 */
 	public int getAdID() {
 		return this.adID;
 	}
+	/**
+	 * @param number
+	 */
 	public void updateSoldAmnt(int number){
 		this.amtSold = this.amtSold + number;
 	}
 	
+	/**
+	 * 
+	 */
 	public void updateAdUse(){
 		this.numberOfUses++;
 	}
 	
+	/**
+	 * @param number
+	 */
 	public void updateAdUse(int number){
 		this.numberOfUses=+number;
 	}
 
+	/**
+	 * @return
+	 */
 	public double getAdCost() {
 		return adCost;
 	}
 
+	/**
+	 * @param adCost
+	 */
 	public void setAdCost(int adCost) {
 		this.adCost = adCost;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getNumberOfUses() {
 		return numberOfUses;
 	}
 
+	/**
+	 * @param numberOfUses
+	 */
 	public void setNumberOfUses(int numberOfUses) {
 		this.numberOfUses = numberOfUses;
 	}
 
+	/**
+	 * @return
+	 */
 	public ArrayList<String> getLocation() {
 		return location;
 	}
 
+	/**
+	 * @param location
+	 */
 	public void setLocation(ArrayList<String> location) {
 		this.location = location;
 	}
+	/**
+	 * @param location
+	 */
 	public void updateLocation(ArrayList<String> location) {
 		this.location.addAll(location);
 	}
+	/**
+	 * @param location
+	 */
 	public void updateLocation(String location) {
 		this.location.add(location);
 	}
 
+	/**
+	 * @return
+	 */
 	public int getAmtSold() {
 		return amtSold;
 	}
 
+	/**
+	 * @param amtSold
+	 */
 	public void setAmtSold(int amtSold) {
 		this.amtSold = amtSold;
 	}
 
+	/**
+	 * @return
+	 */
 	public double getValue() {
 		return value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setValue(double value) {
 		this.value = value;
 	}
+	/**
+	 * 
+	 */
 	public void updateValue() {
 		this.value = Data.getAdValue(this);
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSLocation() {
 		updateSLocation();
 		return sLocation;
 	}
 
+	/**
+	 * @param sLocation
+	 */
 	public void setsLocation(String sLocation) {
 		this.sLocation = sLocation;
 	}
 	
+	/**
+	 * 
+	 */
 	public void updateSLocation() {
 		String s = "";
 		for (int i=0;i<location.size();i++) {
